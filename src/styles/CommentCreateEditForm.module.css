@@ -1,0 +1,46 @@
+/* Main Form Input */
+.Form {
+  border: none;
+  border-bottom: 2px #00d1ff solid;
+  padding: 8px 10px;
+  border-radius: 4px; 
+}
+
+/* Submit Button */
+.Button {
+  border: none;
+  background-color: #242a3d;
+  color: aliceblue;
+  border-radius: 100px;
+  padding: 4px 10px;
+  min-width: 75px;
+  margin: 5px;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+  color: #242a3d;
+}
+
+/* Indentation for Replies */
+.Reply {
+  margin-left: 20px; /* Indent nested replies */
+  padding-left: 10px; 
+  border-left: 2px solid #e6e6e6; 
+}
+
+/* Background for Reply Input */
+.ReplyForm {
+  background-color: #f9f9f9; 
+  border-radius: 5px; 
+  padding: 10px; 
+  margin-top: 10px;
+}
+
+/* Highlight Replies */
+.ReplyHighlight {
+  background-color: #f1faff; /* Light blue for replies */
+  padding: 10px;
+  border-radius: 5px;
+}
