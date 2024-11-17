@@ -102,14 +102,14 @@ const Post = (props) => {
       <Card.Body>
         {event && date && time && (
           <Card.Title className="text-center">
-            <i class="fa-solid fa-drum"></i>: {event} -{" "}
-            <i class="fa-regular fa-calendar"></i>: {date},{" "}
-            <i class="fa-regular fa-clock"></i> {time}
+            <i className="fa-solid fa-drum"></i>: {event} -{" "}
+            <i className="fa-regular fa-calendar"></i>: {date},{" "}
+            <i className="fa-regular fa-clock"></i> {time}
           </Card.Title>
         )}
         {location && (
           <Card.Text>
-            <i class="fa-solid fa-location-dot"></i> {location}
+            <i className="fa-solid fa-location-dot"></i> {location}
           </Card.Text>
         )}
         {description && <Card.Text>{description}</Card.Text>}
