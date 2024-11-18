@@ -9,56 +9,39 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentCreateForm(props) {
-  const {
-    post,
-    setPost,
-    setComments,
-    profileImage,
-    profile_id,
-    parent = null, // Optional parent comment ID for replies
-    addReplyToParent, // Function to update parent comment replies
-  } = props;
-  const [description, setdescription] = useState("");
+  const { post, setPost, setComments, profileImage, profile_id } = props;
+  const [description, setDescription] = useState("");
 
-  const handleChange = (e) => {
-    setdescription(e.target.value);
+  const handleChange = (event) => {
+    setDescription(event.target.value);
+
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const { data } = await axiosRes.post("/comments/", {
         description,
         post,
-        parent, // Include the parent comment ID for replies
       });
-
-      if (parent) {
-        // If it's a reply, update the parent comment's replies
-        addReplyToParent(data);
-      } else {
-        // If it's a top-level comment, update the comments list
-        setComments((prevComments) => ({
-          ...prevComments,
-          results: [data, ...prevComments.results],
-        }));
-
-        // Update the post's comment count
-        setPost((prevPost) => ({
-          results: [
-            {
-              ...prevPost.results[0],
-              comments_count: prevPost.results[0].comments_count + 1,
-            },
-          ],
-        }));
-      }
-
-      setdescription(""); // Clear the input field
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: [data, ...prevComments.results],
+      }));
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_count: (prevPost.results[0].comments_count || 0) + 1, // Ensure comments_count is a number
+          },
+        ],
+      }));
+      setDescription("");
     } catch (err) {
       console.log(err);
     }
   };
+  
 
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>
@@ -69,9 +52,7 @@ function CommentCreateForm(props) {
           </Link>
           <Form.Control
             className={styles.Form}
-            placeholder={
-              parent ? "Write a reply..." : "Write a comment..."
-            } // Different placeholder for replies
+            placeholder="my comment..."
             as="textarea"
             value={description}
             onChange={handleChange}
@@ -84,7 +65,7 @@ function CommentCreateForm(props) {
         disabled={!description.trim()}
         type="submit"
       >
-        {parent ? "Reply" : "Post"} {/* Change button text for replies */}
+        post
       </button>
     </Form>
   );
