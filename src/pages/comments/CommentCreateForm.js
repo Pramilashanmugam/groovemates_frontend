@@ -12,13 +12,13 @@ function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [description, setDescription] = useState("");
 
-  const handleChange = (event) => {
-    setDescription(event.target.value);
+  const handleChange = (e) => {
+    setDescription(e.target.value);
 
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const { data } = await axiosRes.post("/comments/", {
         description,
