@@ -52,7 +52,7 @@ const Post = (props) => {
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
-            ? { ...post, likes_count: (post.likes_count || 0) + 1, like_id: data.id }
+          ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
             : post;
         }),
       }));
@@ -68,7 +68,7 @@ const Post = (props) => {
         ...prevPosts,
         results: prevPosts.results.map((post) => {
           return post.id === id
-            ? { ...post, likes_count: (post.likes_count || 1) - 1, like_id: null }
+          ? { ...post, likes_count: post.likes_count - 1, like_id: null }
             : post;
         }),
       }));
@@ -139,11 +139,11 @@ const Post = (props) => {
           )}
           {likes_count}
           <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />{comments_count}
-          </Link>
+            <i className="far fa-comments" />
+          </Link>{comments_count}
           <Link to={`/posts/${id}`}>
-            <i className="fa-regular fa-share-from-square" />{share_count}
-          </Link>
+            <i className="fa-regular fa-share-from-square" />
+          </Link>{share_count}
           
         </div>
       </Card.Body>
