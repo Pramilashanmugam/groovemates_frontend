@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ReportForm from "../reports/ReportForm";
 
 const Post = (props) => {
   const {
@@ -31,6 +32,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -146,8 +148,23 @@ const Post = (props) => {
             <i className="fa-regular fa-share-from-square" />
           </Link>
           {share_count}
+          
         </div>
+        <Button
+          variant="outline-danger"
+          className="mt-2"
+          onClick={() => setShowReportModal(true)}
+        >
+          Report
+        </Button>
       </Card.Body>
+
+      {/* ReportForm Component */}
+      <ReportForm
+        postId={id}
+        show={showReportModal}
+        handleClose={() => setShowReportModal(false)}
+      />
     </Card>
   );
 };
