@@ -1,0 +1,54 @@
+/* Center align the modal content */
+.modal-header,
+.modal-body {
+  text-align: center;
+}
+
+/* Style the form labels */
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Style the form control elements */
+textarea,
+select {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+}
+
+/* Add spacing between form elements */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Customize the submit button */
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #b3d7ff;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* responsiveness to the modal */
+@media (max-width: 576px) {
+  .modal-body {
+    padding: 20px;
+  }
+}
