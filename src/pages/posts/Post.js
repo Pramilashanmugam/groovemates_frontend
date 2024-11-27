@@ -79,6 +79,23 @@ const Post = (props) => {
     }
   };
 
+  const handleShare = async () => {
+    try {
+      // Send a POST request to the backend to share the post
+      await axiosRes.post("/shares/", { post: id });
+
+      // Update the local state to increment the share count
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id ? { ...post, share_count: post.share_count + 1 } : post
+        ),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Card className={styles.Post}>
       <Card.Body>
@@ -144,11 +161,25 @@ const Post = (props) => {
             <i className="far fa-comments" />
           </Link>
           {comments_count}
-          <Link to={`/posts/${id}`}>
-            <i className="fa-regular fa-share-from-square" />
-          </Link>
-          {share_count}
-          
+          {/* Share Icon and Count */}
+          {currentUser ? (
+            <span onClick={handleShare}>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Click to share this post</Tooltip>}
+              >
+                <i className="fa-solid fa-share" />
+              </OverlayTrigger>
+              {share_count}
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to share posts!</Tooltip>}
+            >
+              <i className="fa-solid fa-share" />
+            </OverlayTrigger>
+          )}
         </div>
         <Button
           variant="outline-danger"
