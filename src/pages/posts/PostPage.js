@@ -10,6 +10,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Comment from "../comments/Comment";
 
+
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -80,6 +81,7 @@ function PostPage() {
             <span>No comments... yet</span>
           )}
         </Container>
+        
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
       <PopularProfiles />

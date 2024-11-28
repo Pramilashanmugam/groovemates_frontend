@@ -82,7 +82,8 @@ const Post = (props) => {
   const handleShare = async () => {
     try {
       // Send a POST request to the backend to share the post
-      await axiosRes.post("/shares/", { post: id });
+      const response = await axiosRes.post("/shares/", { post: id });
+      console.log(response);
 
       // Update the local state to increment the share count
       setPosts((prevPosts) => ({

@@ -1,0 +1,52 @@
+
+/* Container for the SharedPosts section */
+.sharedPostsContainer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Title of the section */
+  .sharedPostsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Styling for the spinner */
+  .spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Alert styling for errors */
+  .errorAlert {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the individual posts */
+  .sharedPostItem {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling when there are no shared posts */
+  .noSharedPosts {
+    font-style: italic;
+    color: #777;
+  }
+  

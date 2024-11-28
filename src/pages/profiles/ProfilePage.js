@@ -24,6 +24,7 @@ import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import SharedPosts from "../shares/SharedPosts";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -142,7 +143,7 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {mainProfilePosts}
+              {mainProfilePosts}              
             </>
           ) : (
             <Asset spinner />
@@ -151,6 +152,10 @@ function ProfilePage() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
+        {/* Add Shared Posts Section */}
+        
+                <SharedPosts />
+              
       </Col>
     </Row>
   );
