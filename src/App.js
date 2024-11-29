@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import SharedPosts from "./pages/shares/SharedPosts";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -48,6 +49,16 @@ function App() {
               <PostsPage
                 message="No results found. Adjust the search keyword or like a post."
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/shared"
+            render={() => (
+              <SharedPosts
+                message="No shared posts found. Share a post to see it here."
+                filter={`ordering=-shares__created_at&`} 
               />
             )}
           />
