@@ -1,0 +1,84 @@
+.ScrollableContainer {
+    height: 500px; /* Adjust the height according to your needs */
+    overflow-y: auto; /* Makes the content scrollable */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    scrollbar-width: thin; /* Firefox specific */
+  }
+  
+  /* Styling for individual posts */
+  .ScrollableContainer .mb-4 {
+    margin-bottom: 15px; /* Space between posts */
+  }
+  
+  /* Custom styling for the shared posts section */
+  .text-muted small {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  /* Center text for loading message */
+  .centerText {
+    text-align: center;
+    color: #aaa;
+  }
+  
+  /* Styling for the alert message when there's an error */
+  .alert {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  
+  /* Optional: Add responsiveness for mobile view */
+  @media (max-width: 767px) {
+    .ScrollableContainer {
+      height: 400px; /* Smaller height on mobile */
+    }
+    .centerText {
+      font-size: 14px;
+    }
+  }
+  
+  /* Styling for the collapsed section */
+  .text-center {
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .text-center:hover {
+    color: #0056b3;
+  }
+  
+  /* Styling for the divider (line between section) */
+  hr {
+    border: 1px solid #dadadf;
+    margin: 20px 0;
+  }
+  
+  /* Scrollbar customization */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  /* Empty state when no posts are available */
+  .emptyStateText {
+    color: #aaa;
+    font-size: 1rem;
+    text-align: center;
+  }
