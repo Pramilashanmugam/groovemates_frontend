@@ -33,6 +33,7 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [showReportModal, setShowReportModal] = useState(false);
+  const [shareClicked, setShareClicked] = useState(false); // New state to track click
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -92,6 +93,10 @@ const Post = (props) => {
           post.id === id ? { ...post, share_count: post.share_count + 1 } : post
         ),
       }));
+
+      // Set the share clicked state to true after sharing
+      setShareClicked(true);
+      setTimeout(() => setShareClicked(false), 1000); // Reset after 1 second
     } catch (err) {
       console.log(err);
     }
@@ -169,7 +174,7 @@ const Post = (props) => {
                 placement="top"
                 overlay={<Tooltip>Click to share this post</Tooltip>}
               >
-                <i className="fa-solid fa-share" />
+                <i className={`${shareClicked ? styles.ShareClicked : styles.Share} fa-solid fa-share`} />
               </OverlayTrigger>
               {share_count}
             </span>

@@ -22,3 +22,32 @@
   .HeartOutline:hover {
     color: #e93049;
   }
+
+  /* Share icon styling */
+.Share {
+  color: #007bff; /* Default blue color */
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 7px;
+  vertical-align: middle;
+  transition: color 0.3s ease-in-out;
+}
+
+.Share:hover {
+  color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Active state when share icon is clicked */
+.ShareClicked {
+  color: #28a745; /* Change to green when clicked */
+  transform: scale(1.2); /* Slightly enlarge the icon */
+  transition: transform 0.3s ease-in-out;
+}
+
+.ShareOutline {
+  color: #888; /* Lighter outline color when inactive */
+}
+
+.ShareOutline:hover {
+  color: #007bff; /* Change color to blue on hover */
+}
