@@ -11,3 +11,6 @@
       height: 250px;
     }
   }
+  .FileInput {
+    display: none;
+  }

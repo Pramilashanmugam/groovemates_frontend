@@ -17,6 +17,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import inputStyles from "../../styles/ProfilePage.module.css";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -141,6 +142,7 @@ const ProfileEditForm = () => {
                 id="image-upload"
                 ref={imageFile}
                 accept="image/*"
+                className={inputStyles.FileInput}
                 onChange={(e) => {
                   if (e.target.files.length) {
                     setProfileData({
