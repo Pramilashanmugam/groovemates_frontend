@@ -27,6 +27,7 @@ const Post = (props) => {
     updated_at,
     postPage,
     setPosts,
+    is_shared_by_user,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -83,14 +84,19 @@ const Post = (props) => {
   const handleShare = async () => {
     try {
       // Send a POST request to the backend to share the post
-      const response = await axiosRes.post("/shares/", { post: id });
-      console.log(response);
-
-      // Update the local state to increment the share count
+      await axiosRes.post("/shares/", { post: id });
+      
+      // Update the local state to increment the share count and set shared flag
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) =>
-          post.id === id ? { ...post, share_count: post.share_count + 1 } : post
+          post.id === id
+            ? {
+                ...post,
+                share_count: post.share_count + 1,
+                is_shared_by_user: true, // Mark the post as shared by the user
+              }
+            : post
         ),
       }));
 
@@ -172,9 +178,25 @@ const Post = (props) => {
             <span onClick={handleShare}>
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>Click to share this post</Tooltip>}
+                overlay={
+                  is_shared_by_user ? (
+                    <Tooltip>
+                      Sorry, you cannot share a post more than once
+                    </Tooltip>
+                  ) : (
+                    <Tooltip>Click to share this post</Tooltip>
+                  )
+                }
               >
-                <i className={`${shareClicked ? styles.ShareClicked : styles.Share} fa-solid fa-share`} />
+                <i
+                  className={`fa-solid fa-share ${
+                    shareClicked
+                      ? styles.ShareClicked
+                      : is_shared_by_user
+                      ? styles.ShareDisabled
+                      : styles.Share
+                  }`}
+                />
               </OverlayTrigger>
               {share_count}
             </span>
