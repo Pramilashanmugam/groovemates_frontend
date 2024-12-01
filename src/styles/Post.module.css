@@ -23,9 +23,9 @@
     color: #e93049;
   }
 
-  /* Share icon styling */
+/* Share icon styling */
 .Share {
-  color: #007bff; /* Default blue color */
+  color: #888; /* Default blue color */
   cursor: pointer;
   font-size: 1.6rem;
   padding: 7px;
@@ -33,6 +33,7 @@
   transition: color 0.3s ease-in-out;
 }
 
+/* Hover effect */
 .Share:hover {
   color: #0056b3; /* Darker blue color on hover */
 }
@@ -44,10 +45,19 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.ShareOutline {
-  color: #888; /* Lighter outline color when inactive */
+/* Inactive state when share icon is disabled (already shared) */
+.ShareDisabled {
+  color: #007bff; /* Lighter color when disabled */
+  cursor: not-allowed; /* Show that it's not clickable */
 }
 
-.ShareOutline:hover {
-  color: #007bff; /* Change color to blue on hover */
+/* Outline state for inactive share icon */
+.ShareOutline {
+  color: #007bff; /* Lighter outline color when inactive */
 }
+
+/* Hover effect on inactive state */
+.ShareOutline:hover {
+  color: #888; /* Change color to blue on hover */
+}
+
