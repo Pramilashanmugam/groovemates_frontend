@@ -85,7 +85,7 @@ const Post = (props) => {
     try {
       // Send a POST request to the backend to share the post
       await axiosRes.post("/shares/", { post: id });
-      
+
       // Update the local state to increment the share count and set shared flag
       setPosts((prevPosts) => ({
         ...prevPosts,
@@ -209,13 +209,28 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
         </div>
-        <Button
-          variant="outline-danger"
-          className="mt-2"
-          onClick={() => setShowReportModal(true)}
-        >
-          Report
-        </Button>
+        <div className={styles.PostBar}>
+          {currentUser ? (
+            <Button
+              variant="outline-danger"
+              className="mt-2"
+              onClick={() => setShowReportModal(true)}
+            >
+              Report
+            </Button>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to report posts!</Tooltip>}
+            >
+              <span className="mt-2">
+                <Button variant="outline-danger" disabled>
+                  Report
+                </Button>
+              </span>
+            </OverlayTrigger>
+          )}
+        </div>
       </Card.Body>
 
       {/* ReportForm Component */}
