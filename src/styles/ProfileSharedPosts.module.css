@@ -1,84 +1,115 @@
 .ScrollableContainer {
-    height: 500px; /* Adjust the height according to your needs */
-    overflow-y: auto; /* Makes the content scrollable */
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    scrollbar-width: thin; /* Firefox specific */
+  height: 500px;
+  /* Adjust the height of the scrollable container */
+  overflow-y: auto;
+  /* Enables vertical scrolling when content exceeds height */
+  padding: 15px;
+  /* Adds padding inside the container */
+  background-color: #ffffff;
+  /* Sets background color */
+  border-radius: 8px;
+  /* Rounds the corners of the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Adds a subtle shadow for depth */
+  margin-bottom: 20px;
+  /* Adds space below the container */
+  scrollbar-width: thin;
+  /* Firefox specific to customize scrollbar width */
+}
+
+/* Styling for individual posts inside the scrollable container */
+.ScrollableContainer .mb-4 {
+  margin-bottom: 15px;
+  /* Adds space between individual posts */
+}
+
+/* Styling for shared posts section (smaller text for the small tag) */
+.ScrollableContainer .text-muted small {
+  font-size: 0.9rem;
+  /* Reduces the font size of the small text */
+  color: #777;
+  /* Sets a muted grey color */
+}
+
+/* Centered text styling for loading message */
+.centerText {
+  text-align: center;
+  /* Centers the text */
+  color: #aaa;
+  /* Light grey color for the text */
+}
+
+/* Styling for alert messages when an error occurs */
+.alert {
+  text-align: center;
+  /* Centers the alert message */
+  font-size: 1.1rem;
+  /* Increases font size for visibility */
+  margin-top: 20px;
+  /* Adds space above the alert */
+}
+
+/* Mobile responsiveness: Adjustments for small screens */
+@media (max-width: 767px) {
+  .ScrollableContainer {
+    height: 400px;
+    /* Adjusts container height for mobile view */
   }
-  
-  /* Styling for individual posts */
-  .ScrollableContainer .mb-4 {
-    margin-bottom: 15px; /* Space between posts */
-  }
-  
-  /* Custom styling for the shared posts section */
-  .text-muted small {
-    font-size: 0.9rem;
-    color: #777;
-  }
-  
-  /* Center text for loading message */
+
   .centerText {
-    text-align: center;
-    color: #aaa;
+    font-size: 14px;
+    /* Reduces font size of the center text */
   }
-  
-  /* Styling for the alert message when there's an error */
-  .alert {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-top: 20px;
-  }
-  
-  /* Optional: Add responsiveness for mobile view */
-  @media (max-width: 767px) {
-    .ScrollableContainer {
-      height: 400px; /* Smaller height on mobile */
-    }
-    .centerText {
-      font-size: 14px;
-    }
-  }
-  
-  /* Styling for the collapsed section */
-  .text-center {
-    cursor: pointer;
-    color: #007bff;
-  }
-  
-  .text-center:hover {
-    color: #0056b3;
-  }
-  
-  /* Styling for the divider (line between section) */
-  hr {
-    border: 1px solid #dadadf;
-    margin: 20px 0;
-  }
-  
-  /* Scrollbar customization */
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  
-  *::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  /* Empty state when no posts are available */
-  .emptyStateText {
-    color: #aaa;
-    font-size: 1rem;
-    text-align: center;
-  }
+}
+
+/* Styling for the collapsed section (toggle text) */
+.text-center {
+  cursor: pointer;
+  /* Changes cursor to pointer on hover */
+  color: #007bff;
+  /* Sets the initial color to blue */
+}
+
+.text-center:hover {
+  color: #0056b3;
+  /* Darkens the color when hovered */
+}
+
+/* Styling for the divider (line between sections) */
+hr {
+  border: 1px solid #dadadf;
+  /* Light grey border for the line */
+  margin: 20px 0;
+  /* Adds space above and below the divider */
+}
+
+/* Scrollbar customization for webkit browsers (Chrome, Safari) */
+*::-webkit-scrollbar {
+  width: 5px;
+  /* Makes the scrollbar thinner */
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Sets the background of the scrollbar track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Sets the color of the scrollbar thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Darkens the thumb when hovered */
+}
+
+/* Empty state message when no posts are available */
+.emptyStateText {
+  color: #aaa;
+  /* Light grey color for empty state text */
+  font-size: 1rem;
+  /* Sets the font size */
+  text-align: center;
+  /* Centers the text */
+}

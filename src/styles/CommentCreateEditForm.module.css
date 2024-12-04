@@ -1,20 +1,20 @@
 .Form {
-  border: none;
-  border-bottom: 2px #00d1ff solid;
+  border: none; /* Removes any border from the form */
+  border-bottom: 2px #00d1ff solid; /* Adds a solid blue underline to the form */
 }
 
 .Button {
-  border: none;
-  background-color: #242a3d;
-  color: aliceblue;
-  border-radius: 100px;
-  padding: 4px 10px;
-  min-width: 75px;
-  margin: 5px;
+  border: none; /* Removes any border from the button */
+  background-color: #242a3d; /* Sets the background color to a dark blue/gray */
+  color: aliceblue; /* Sets the text color to light, almost white blue */
+  border-radius: 100px; /* Gives the button fully rounded corners */
+  padding: 4px 10px; /* Adds padding inside the button */
+  min-width: 75px; /* Ensures a minimum width for the button */
+  margin: 5px; /* Adds space around the button */
 }
 
 .Button:hover {
-  cursor: pointer;
-  background-color: aliceblue;
-  color: #242a3d;
+  cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+  background-color: aliceblue; /* Changes the background color to light blue on hover */
+  color: #242a3d; /* Changes the text color to dark blue/gray on hover */
 }

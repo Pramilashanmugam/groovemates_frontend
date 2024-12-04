@@ -1,46 +1,71 @@
 .Row {
-    height: calc(100vh - 5rem);
-  }
-  .Input {
-    background: #ffffff;
-    border: 1px solid #dfd4f1;
-    box-sizing: border-box;
-    border-radius: 2px;
-    color: #7177a1;
-    text-align: center;
-    padding: 10px;
-  }
+  height: calc(100vh - 5rem);
+  /* Ensures the row height fills the screen minus 5rem for top padding/spacing */
+}
 
-  .Header {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #2C1A47;
-  }
-  
-  .Link {
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    margin: auto;
-  }
-  
-  .Link span {
-    color: #ff9254;
-  }
-  
-  .Container {
-    padding: 30px 10px;
-  }
-  
-  .SignInCol {
-    height: 320px;
-  }
-  
-  .SignUpCol {
-    height: 375px;
-  }
+.Input {
+  background: #ffffff;
+  /* White background for the input field */
+  border: 1px solid #dfd4f1;
+  /* Light purple border for the input field */
+  box-sizing: border-box;
+  /* Ensures padding and borders are included in the element's total width/height */
+  border-radius: 2px;
+  /* Rounded corners for the input field */
+  color: #7177a1;
+  /* Muted grey text color */
+  text-align: center;
+  /* Centers the text inside the input field */
+  padding: 10px;
+  /* Adds padding inside the input field */
+}
+
+.Header {
+  font-style: normal;
+  /* Normal font style (not italic) */
+  font-weight: bold;
+  /* Makes the header bold */
+  font-size: 16px;
+  /* Sets the font size */
+  line-height: 19px;
+  /* Sets the line height for better readability */
+  text-align: center;
+  /* Centers the header text */
+  letter-spacing: 0.2em;
+  /* Adds spacing between letters for emphasis */
+  text-transform: uppercase;
+  /* Transforms the text to uppercase */
+  color: #2C1A47;
+  /* Dark color for the header text */
+}
+
+.Link {
+  text-decoration: none;
+  /* Removes underline from the link */
+  text-align: center;
+  /* Centers the link text */
+  display: block;
+  /* Makes the link a block element */
+  margin: auto;
+  /* Centers the link horizontally */
+}
+
+.Link span {
+  color: #ff9254;
+  /* Sets a bright orange color for the span inside the link */
+}
+
+.Container {
+  padding: 30px 10px;
+  /* Adds padding inside the container for spacing */
+}
+
+.SignInCol {
+  height: 320px;
+  /* Sets the height of the SignIn column */
+}
+
+.SignUpCol {
+  height: 375px;
+  /* Sets the height of the SignUp column */
+}

@@ -1,11 +1,17 @@
 .DropdownItem {
-    display: inline-block;
-    max-width: 50%;
-    padding: 0px;
-  }
-  
-  .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
+  display: inline-block;
+  /* Makes the dropdown item display inline, allowing it to sit side by side */
+  max-width: 50%;
+  /* Limits the maximum width of the item to 50% of its container */
+  padding: 0px;
+  /* Removes any default padding */
+}
+
+.Absolute {
+  position: absolute;
+  /* Positions the element absolutely within its closest positioned ancestor */
+  right: 0;
+  /* Aligns the element to the right edge of its container */
+  z-index: 99;
+  /* Ensures the element appears above other content with a lower z-index */
+}

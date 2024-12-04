@@ -1,7 +1,9 @@
 .Container {
-    min-height: 343px;
-  }
+  min-height: 343px;
+  /* Ensures the container has a minimum height of 343px */
+}
 
 .FileInput {
   display: none;
+  /* Hides the file input element from view */
 }

@@ -1,16 +1,24 @@
 .ProfileImage {
-    object-fit: cover;
-    height: 120px;
-    width: 120px;
-    margin: 4px;
+  object-fit: cover;
+  /* Ensures the image covers the entire container without distortion */
+  height: 120px;
+  /* Sets the height of the profile image */
+  width: 120px;
+  /* Sets the width of the profile image */
+  margin: 4px;
+  /* Adds margin around the profile image */
+}
+
+@media screen and (max-width: 991px) {
+  .ProfileImage {
+    width: 250px;
+    /* Adjusts the width to 250px on smaller screens */
+    height: 250px;
+    /* Adjusts the height to 250px on smaller screens */
   }
-  
-  @media screen and (max-width: 991px) {
-    .ProfileImage {
-      width: 250px;
-      height: 250px;
-    }
-  }
-  .FileInput {
-    display: none;
-  }
+}
+
+.FileInput {
+  display: none;
+  /* Hides the file input field from view */
+}

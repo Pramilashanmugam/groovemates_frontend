@@ -1,6 +1,6 @@
 .Avatar {
-  border-radius: 50%;
-  border: 2px solid #A3D8D3;
-  margin: 0px 8px 0px 8px;
-  object-fit: cover;
+  border-radius: 50%; /* Makes the avatar circular */
+  border: 2px solid #A3D8D3; /* Adds a light teal border around the avatar */
+  margin: 0px 8px 0px 8px; /* Adds horizontal margin (left and right) for spacing */
+  object-fit: cover; /* Ensures the image covers the container without distorting aspect ratio */
 }

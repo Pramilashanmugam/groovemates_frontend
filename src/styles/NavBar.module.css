@@ -1,13 +1,16 @@
 .NavBar {
-    background: linear-gradient(90deg, #EDE7F6, #E0F7FA, #FFF5E6);
-    border: 1px solid #A3D8D3;
-  }
+  background: linear-gradient(90deg, #EDE7F6, #E0F7FA, #FFF5E6);
+  /* Creates a horizontal gradient background with soft colors */
+  border: 1px solid #A3D8D3;
+  /* Adds a border with a soft greenish color around the navbar */
+}
 
-  .NavLink {
-    padding: 5px;
-  }
-  
-  .Active i {
-    color: #2C1A47;
-  }
-  
+.NavLink {
+  padding: 5px;
+  /* Adds padding around each navigation link for better spacing */
+}
+
+.Active i {
+  color: #2C1A47;
+  /* Changes the icon color to a dark purple when the nav item is active */
+}

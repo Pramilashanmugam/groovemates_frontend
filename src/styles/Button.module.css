@@ -1,69 +1,95 @@
 .Button {
   font-size: 0.8rem;
+  /* Sets the font size of the button */
   align-self: center;
+  /* Centers the button within its container */
   border-radius: 100px;
+  /* Makes the button's corners fully rounded (pill-shaped) */
   border-color: transparent;
+  /* Makes the button border transparent */
   padding: 4px 10px;
+  /* Adds padding inside the button for spacing (top-bottom, left-right) */
   margin-left: 2px;
+  /* Adds a 2px margin on the left side */
   margin-right: 2px;
+  /* Adds a 2px margin on the right side */
   min-width: 75px;
+  /* Ensures the button has a minimum width of 75px */
 }
 
 .Button:hover {
   opacity: 0.8;
+  /* Reduces opacity on hover for a subtle effect */
   border-color: transparent;
+  /* Ensures the border remains transparent on hover */
   cursor: pointer;
+  /* Changes the cursor to a pointer (hand icon) when hovered */
 }
 
 .Button:hover:active {
   background-color: #2C1A47 !important;
+  /* Changes background to a dark purple when button is clicked, overriding other styles */
 }
 
 .Button:active {
   background-color: #2C1A47 !important;
+  /* Sets the active (pressed) background color to dark purple */
 }
 
 .Button:focus {
   background-color: #2C1A47;
+  /* Changes background color when button is focused (clicked or tabbed into) */
 }
 
 .Wide {
   padding: 10px 50px;
+  /* Increases padding on the sides for wider buttons */
   width: 100%;
+  /* Makes the button take up the full width of its container */
 }
 
 .Blue,
 .BlueOutline:hover,
 .Bright:hover {
   background-color: #2C1A47;
+  /* Dark purple background color for these button variants */
   color: #ffffff;
+  /* White text color */
 }
 
 .BlueOutline,
 .Blue:hover {
   /* border: 1px solid #2C1A47; */
+  /* (commented out) - optional border styling for blue buttons */
   background-color: #d2baf5;
+  /* Light purple background color */
   color: #2C1A47;
+  /* Dark purple text color */
 }
 
 .Black,
 .BlackOutline:hover {
-  /* background-color: #2C1A47;
-  color: white; */
+  /* background-color: #2C1A47; color: white; */
+  /* (commented out) - possible background and text color for black buttons */
   background-color: #2C1A47;
+  /* Dark purple background color */
   color: aliceblue;
+  /* Light blue text color */
 }
 
 .Black:hover,
 .BlackOutline {
-  /* background-color: #dadadf;
-  color: #2C1A47;
-  border-color: #2C1A47; */
+  /* background-color: #dadadf; color: #2C1A47; border-color: #2C1A47; */
+  /* (commented out) - optional hover styling for black buttons */
   background-color: #d2baf5;
+  /* Light purple background color on hover */
   color: #2C1A47;
+  /* Dark purple text color */
 }
 
 .Bright {
   background-color: #E0F7FA;
+  /* Light cyan background color for bright buttons */
   color: #2C1A47;
+  /* Dark purple text color */
 }

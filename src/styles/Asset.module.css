@@ -1,7 +1,7 @@
 .Asset {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 120px;
-  }
+  display: flex; /* Uses flexbox layout */
+  flex-direction: column; /* Arranges child elements in a vertical column */
+  justify-content: center; /* Centers child elements vertically within the container */
+  align-items: center; /* Centers child elements horizontally within the container */
+  min-height: 120px; /* Sets a minimum height for the container */
+}

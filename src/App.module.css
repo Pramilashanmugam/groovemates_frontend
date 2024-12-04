@@ -1,78 +1,114 @@
 .App {
-    font-family: "DM Sans", sans-serif;
-    background-color: #f8f8f8;
-    min-height: 100vh;
-  }
+  font-family: "DM Sans", sans-serif;
+  /* Specifies the font for the app */
+  background-color: #f8f8f8;
+  /* Light grey background color for the app */
+  min-height: 100vh;
+  /* Ensures the app takes up at least the full viewport height */
+}
 
-  .Main {
-    padding-top: 5rem;
-  }
+.Main {
+  padding-top: 5rem;
+  /* Adds space on top for a fixed navbar or header */
+}
 
-  .Content {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 2px;
-    border: 1px solid #dadadf;
-  }
-  
-  .FillerImage {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .Image {
-    max-height: 40vh;
-    max-width: 100%;
-    object-fit: contain;
-  }
+.Content {
+  background-color: #ffffff;
+  /* White background for content sections */
+  padding: 10px;
+  /* Adds padding inside content areas */
+  border-radius: 2px;
+  /* Slight rounding of content box corners */
+  border: 1px solid #dadadf;
+  /* Light grey border around content */
+}
 
-  * {
-    box-sizing: border-box;
-  }
-  
-  a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
-  }
-  
-  a:hover {
-    text-decoration: none;
-  }
-  
-  a:hover i {
-    color: #2C1A47;
-    transition: color ease-in-out 0.3s;
-  }
-  
-  i {
-    color: #cfced3;
-    font-size: 1.6rem;
-    padding: 7px;
-    vertical-align: middle;
-  }
-  
-  i:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #2C1A47;
-  }
+.FillerImage {
+  object-fit: cover;
+  /* Ensures the image covers the container without distorting */
+  height: 100%;
+  /* Ensures the image fills the height of the container */
+  width: 100%;
+  /* Ensures the image fills the width of the container */
+}
 
-  figure {
-    text-align: center;
-    display: inline-block;
-  }
-  
-  /* scrollbar */
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  *::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  *::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  *::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+.Image {
+  max-height: 40vh;
+  /* Limits the image height to 40% of the viewport height */
+  max-width: 100%;
+  /* Ensures the image doesn’t exceed the width of its container */
+  object-fit: contain;
+  /* Keeps the image’s aspect ratio intact while fitting it inside the container */
+}
+
+* {
+  box-sizing: border-box;
+  /* Ensures padding and borders are included in width/height calculations */
+}
+
+a {
+  color: #555555;
+  /* Default link color */
+  transition: color ease-in-out 0.3s;
+  /* Smooth color transition on hover */
+}
+
+a:hover {
+  text-decoration: none;
+  /* Removes underline on hover */
+}
+
+a:hover i {
+  color: #2C1A47;
+  /* Changes icon color when link is hovered */
+  transition: color ease-in-out 0.3s;
+  /* Smooth color transition */
+}
+
+i {
+  color: #cfced3;
+  /* Default color for icons */
+  font-size: 1.6rem;
+  /* Icon size */
+  padding: 7px;
+  /* Padding around the icon */
+  vertical-align: middle;
+  /* Vertically aligns the icon */
+}
+
+i:hover {
+  cursor: pointer;
+  /* Changes cursor to a pointer when hovering over an icon */
+  transition: color ease-in-out 0.3s;
+  /* Smooth transition for icon color on hover */
+  color: #2C1A47;
+  /* Changes icon color when hovered */
+}
+
+figure {
+  text-align: center;
+  /* Centers the figure element */
+  display: inline-block;
+  /* Makes figure behave like an inline element */
+}
+
+/* Custom scrollbar styling */
+*::-webkit-scrollbar {
+  width: 5px;
+  /* Sets the width of the scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Light background for the scrollbar track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Darker color for the scrollbar thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Darker color for the scrollbar thumb on hover */
+}

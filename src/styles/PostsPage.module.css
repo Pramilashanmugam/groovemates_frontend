@@ -1,18 +1,28 @@
 .SearchBar input {
-    border-radius: 20px;
-    color: #29243d;
-    padding-left: 40px;
-    margin-bottom: 16px;
-  }
-  
-  .SearchIcon {
-    position: absolute;
-    font-size: 1.2rem;
-    padding: 9px;
-    padding-left: 15px;
-  }
-  
-  .SearchIcon:hover {
-    cursor: default;
-    color: #cfced3;
-  }
+  border-radius: 20px;
+  /* Rounds the corners of the input field */
+  color: #29243d;
+  /* Sets the text color to a dark shade */
+  padding-left: 40px;
+  /* Adds padding to the left of the input to make space for the icon */
+  margin-bottom: 16px;
+  /* Adds space below the input field */
+}
+
+.SearchIcon {
+  position: absolute;
+  /* Positions the search icon absolutely inside the input container */
+  font-size: 1.2rem;
+  /* Sets the size of the icon */
+  padding: 9px;
+  /* Adds padding around the icon */
+  padding-left: 15px;
+  /* Additional left padding to align the icon within the input field */
+}
+
+.SearchIcon:hover {
+  cursor: default;
+  /* Changes the cursor to default when hovering over the icon */
+  color: #cfced3;
+  /* Changes the color of the icon on hover */
+}

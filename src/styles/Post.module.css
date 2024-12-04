@@ -1,63 +1,85 @@
 .Post {
-    background-color: #ffffff;
-    border: 1px solid #dadadf;
-    border-radius: 2px;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .Post figure,
-  h5 {
-    margin: 0 0;
-  }
-  
-  .Heart {
-    color: #e93049;
-  }
-  
-  .Heart:hover {
-    color: #2142b2;
-  }
-  
-  .HeartOutline:hover {
-    color: #e93049;
-  }
+  background-color: #ffffff;
+  /* White background for posts */
+  border: 1px solid #dadadf;
+  /* Light gray border for the post */
+  border-radius: 2px;
+  /* Rounded corners for the post */
+  margin-bottom: 16px;
+  /* Spacing below the post */
+  text-align: center;
+  /* Centers the text and content within the post */
+}
+
+.Post figure,
+h5 {
+  margin: 0 0;
+  /* Removes any default margins for figures and h5 elements */
+}
+
+.Heart {
+  color: #e93049;
+  /* Sets the default color of the heart icon to red */
+}
+
+.Heart:hover {
+  color: #2142b2;
+  /* Changes color to dark blue when hovered over */
+}
+
+.HeartOutline:hover {
+  color: #e93049;
+  /* Changes outline heart icon color to red when hovered */
+}
 
 /* Share icon styling */
 .Share {
-  color: #888; /* Default blue color */
+  color: #888;
+  /* Default gray color for the share icon */
   cursor: pointer;
+  /* Indicates the icon is clickable */
   font-size: 1.6rem;
+  /* Sets the font size of the share icon */
   padding: 7px;
+  /* Adds padding around the icon */
   vertical-align: middle;
+  /* Vertically centers the icon */
   transition: color 0.3s ease-in-out;
+  /* Smooth color transition on hover */
 }
 
 /* Hover effect */
 .Share:hover {
-  color: #0056b3; /* Darker blue color on hover */
+  color: #0056b3;
+  /* Darker blue color when the share icon is hovered over */
 }
 
 /* Active state when share icon is clicked */
 .ShareClicked {
-  color: #28a745; /* Change to green when clicked */
-  transform: scale(1.2); /* Slightly enlarge the icon */
+  color: #28a745;
+  /* Changes color to green when the share icon is clicked */
+  transform: scale(1.2);
+  /* Slightly enlarges the icon */
   transition: transform 0.3s ease-in-out;
+  /* Smooth scale transition */
 }
 
 /* Inactive state when share icon is disabled (already shared) */
 .ShareDisabled {
-  color: #007bff; /* Lighter color when disabled */
-  cursor: not-allowed; /* Show that it's not clickable */
+  color: #007bff;
+  /* Lighter blue color when the share icon is disabled */
+  cursor: not-allowed;
+  /* Changes cursor to indicate the icon is not clickable */
 }
 
 /* Outline state for inactive share icon */
 .ShareOutline {
-  color: #007bff; /* Lighter outline color when inactive */
+  color: #007bff;
+  /* Lighter blue color for the inactive share icon */
 }
 
 /* Hover effect on inactive state */
 .ShareOutline:hover {
-  color: #888; /* Change color to blue on hover */
+  color: #888;
+  /* Changes color to gray on hover */
 }
-
