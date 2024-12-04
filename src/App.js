@@ -16,15 +16,21 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import SharedPosts from "./pages/shares/SharedPosts";
 
+/**
+ * The main component that sets up routing for the application.
+ * It displays the navigation bar and switches between various pages of the app based on the URL.
+ * Handles the routing of different pages related to posts, user profiles, and authentication.
+ */
 function App() {
-  const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || "";
+  const currentUser = useCurrentUser(); // Fetches the current logged-in user's data
+  const profile_id = currentUser?.profile_id || ""; // Retrieves the profile ID from the current user context, or sets it to an empty string if not available
 
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
+          {/* Routes for PostsPage with different filters based on the page */}
           <Route
             exact
             path="/"
@@ -58,15 +64,19 @@ function App() {
             render={() => (
               <SharedPosts
                 message="No shared posts found. Share a post to see it here."
-                filter={`ordering=-shares__created_at&`} 
+                filter={`ordering=-shares__created_at&`}
               />
             )}
           />
+          {/* Routes for authentication pages */}
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
+          {/* Route for creating a post */}
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+          {/* Routes for individual posts */}
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
+          {/* Routes for user profile pages */}
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route
             exact
@@ -83,6 +93,7 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
+          {/* Default route for page not found */}
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
