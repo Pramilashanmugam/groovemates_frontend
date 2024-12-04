@@ -27,10 +27,10 @@ const SharedPosts = ({ filter, message }) => {
   useEffect(() => {
     const fetchSharedPosts = async () => {
       try {
-        const { data } = await axiosRes.get(`/shared-posts/?${filter}`);
-        setSharedPosts(data);
+        const { data } = await axiosRes.get(`/shares/`);
+        setSharedPosts(data); // Save all shares with post details
       } catch (err) {
-        setError("Failed to load shared posts.");
+        setError(err.response?.data?.detail || "Failed to load shared posts.");
       } finally {
         setIsLoading(false);
       }
@@ -73,16 +73,17 @@ const SharedPosts = ({ filter, message }) => {
               hasMore={!!sharedPosts.next} // Determines if there are more posts to load
               loader={<Spinner animation="border" />} // Loading indicator
             >
-              {sharedPosts.results.map((post) => (
-                <div key={post.id} className="mb-4">
+              {sharedPosts.results.map((share) => (
+                <div key={share.id} className="mb-4">
                   {/* Display the username who shared the post */}
                   <p className="text-muted">
                     <small>
-                      Shared by <strong>{post.shared_by}</strong>
+                      Shared by <strong>{share.user}</strong> on{" "}
+                      {new Date(share.created_at).toLocaleDateString()}
                     </small>
                   </p>
                   {/* Render the Post component */}
-                  <Post {...post} />
+                  <Post {...share.post} />
                 </div>
               ))}
             </InfiniteScroll>
