@@ -18,8 +18,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
-  useRedirect("loggedOut");
-  const [errors, setErrors] = useState({});
+  useRedirect("loggedOut"); // Redirects to the login page if the user is not logged in
+  const [errors, setErrors] = useState({}); // Holds validation errors for the form
 
   const [postData, setPostData] = useState({
     event: "",
@@ -30,9 +30,10 @@ function PostCreateForm() {
     image: "",
   });
   const { event, description, location, date, time, image } = postData;
-  const imageInput = useRef(null);
+  const imageInput = useRef(null); // Reference for the image file input
   const history = useHistory();
 
+  // Handles change in input fields
   const handleChange = (event) => {
     setPostData({
       ...postData,
@@ -40,6 +41,7 @@ function PostCreateForm() {
     });
   };
 
+  // Handles image selection and updates the image preview
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -50,6 +52,7 @@ function PostCreateForm() {
     }
   };
 
+  // Handles the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -59,21 +62,22 @@ function PostCreateForm() {
     formData.append("location", location);
     formData.append("date", date);
     formData.append("time", time);
-    formData.append("image", imageInput.current.files[0]);
+    formData.append("image", imageInput.current.files[0]); // Appending image to the form data
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      history.push(`/posts/${data.id}`);
+      history.push(`/posts/${data.id}`); // Redirect to the created post page
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
+        setErrors(err.response?.data); // Setting form validation errors if response contains them
       }
     }
   };
 
   const textFields = (
     <div className="text-center">
+      {/* Event input field */}
       <Form.Group>
         <Form.Label>Event</Form.Label>
         <Form.Control
@@ -89,6 +93,7 @@ function PostCreateForm() {
         </Alert>
       ))}
 
+      {/* Location input field */}
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
@@ -103,6 +108,8 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+
+      {/* Date and time input fields */}
       <Form.Group as={Row} className="align-items-center">
         <Col md={6}>
           <Form.Label>Date</Form.Label>
@@ -135,6 +142,7 @@ function PostCreateForm() {
         </Col>
       </Form.Group>
 
+      {/* Description input field */}
       <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -151,6 +159,7 @@ function PostCreateForm() {
         </Alert>
       ))}
 
+      {/* Buttons for cancel and create */}
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
@@ -197,6 +206,7 @@ function PostCreateForm() {
                 </Form.Label>
               )}
 
+              {/* File input for image upload */}
               <Form.File
                 id="image-upload"
                 accept="image/*"

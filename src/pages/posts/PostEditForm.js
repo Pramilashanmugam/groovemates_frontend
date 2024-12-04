@@ -16,7 +16,7 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); // Holds validation errors for the form
 
   const [postData, setPostData] = useState({
     event: "",
@@ -28,25 +28,33 @@ function PostEditForm() {
   });
   const { event, description, location, date, time, image } = postData;
 
-  const imageInput = useRef(null);
+  const imageInput = useRef(null); // Reference for the image input field
   const history = useHistory();
-  const { id } = useParams();
+  const { id } = useParams(); // Fetch post ID from the URL params
 
+  // Fetch post data on component mount to populate the form
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { event, description, location, date, time, image, is_owner } = data;
+        const { event, description, location, date, time, image, is_owner } =
+          data;
 
-        is_owner ? setPostData({ event, description, location, date, time, image }) : history.push("/");
+        // Ensure the current user is the owner of the post, otherwise redirect
+        if (is_owner) {
+          setPostData({ event, description, location, date, time, image });
+        } else {
+          history.push("/"); // Redirect to homepage if the user is not the owner
+        }
       } catch (err) {
-        console.log(err);
+        console.log(err); // Handle errors in fetching post data
       }
     };
 
     handleMount();
   }, [history, id]);
 
+  // Handles changes in the form inputs
   const handleChange = (e) => {
     setPostData({
       ...postData,
@@ -54,16 +62,18 @@ function PostEditForm() {
     });
   };
 
+  // Handles image input change and updates the preview
   const handleChangeImage = (e) => {
     if (e.target.files.length) {
-      URL.revokeObjectURL(image);
+      URL.revokeObjectURL(image); // Revoke previous object URL
       setPostData({
         ...postData,
-        image: URL.createObjectURL(e.target.files[0]),
+        image: URL.createObjectURL(e.target.files[0]), // Set the new image URL
       });
     }
   };
 
+  // Handles form submission to update the post
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -74,22 +84,24 @@ function PostEditForm() {
     formData.append("date", date);
     formData.append("time", time);
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+      formData.append("image", imageInput.current.files[0]); // Append image if selected
     }
 
     try {
-      await axiosReq.put(`/posts/${id}/`, formData);
-      history.push(`/posts/${id}`);
+      await axiosReq.put(`/posts/${id}/`, formData); // Send PUT request to update the post
+      history.push(`/posts/${id}`); // Redirect to the updated post page
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
+        setErrors(err.response?.data); // Handle and display validation errors
       }
     }
   };
 
+  // JSX for rendering form fields (event, location, date, time, description)
   const textFields = (
     <div className="text-center">
+      {/* Event input field */}
       <Form.Group>
         <Form.Label>Event</Form.Label>
         <Form.Control
@@ -104,6 +116,8 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
+
+      {/* Location input field */}
       <Form.Group>
         <Form.Label>Location</Form.Label>
         <Form.Control
@@ -118,6 +132,8 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
+
+      {/* Date and time input fields */}
       <Form.Group as={Row} className="align-items-center">
         <Col md={6}>
           <Form.Label>Date</Form.Label>
@@ -148,6 +164,8 @@ function PostEditForm() {
           ))}
         </Col>
       </Form.Group>
+
+      {/* Description input field */}
       <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -164,6 +182,7 @@ function PostEditForm() {
         </Alert>
       ))}
 
+      {/* Buttons for cancel and save */}
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => history.goBack()}
@@ -184,6 +203,7 @@ function PostEditForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
+              {/* Display image preview and allow image upload */}
               <figure>
                 <Image className={appStyles.Image} src={image} rounded />
               </figure>
@@ -196,6 +216,7 @@ function PostEditForm() {
                 </Form.Label>
               </div>
 
+              {/* File input for image upload */}
               <Form.File
                 id="image-upload"
                 accept="image/*"

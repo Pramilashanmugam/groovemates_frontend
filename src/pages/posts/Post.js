@@ -34,21 +34,31 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [showReportModal, setShowReportModal] = useState(false);
-  const [shareClicked, setShareClicked] = useState(false); // New state to track click
+  const [shareClicked, setShareClicked] = useState(false); // State to track if share button is clicked
 
+  /**
+   * Redirects to the post edit page
+   */
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
+  /**
+   * Deletes the current post and navigates back
+   */
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      console.log(err); // Log any errors that occur during deletion
     }
   };
 
+  /**
+   * Handles liking a post by sending a POST request to the backend
+   * and updating the like count in the state.
+   */
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
@@ -61,10 +71,14 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      console.log(err); // Log any errors during the like action
     }
   };
 
+  /**
+   * Handles unliking a post by sending a DELETE request to the backend
+   * and updating the like count in the state.
+   */
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
@@ -77,16 +91,20 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      console.log(err); // Log any errors during the unlike action
     }
   };
 
+  /**
+   * Handles sharing the post by sending a POST request to the backend
+   * and updating the share count in the state.
+   */
   const handleShare = async () => {
     try {
-      // Send a POST request to the backend to share the post
+      // Send a POST request to share the post
       await axiosRes.post("/shares/", { post: id });
 
-      // Update the local state to increment the share count and set shared flag
+      // Update the local state to increment the share count and mark post as shared by the user
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) =>
@@ -100,11 +118,11 @@ const Post = (props) => {
         ),
       }));
 
-      // Set the share clicked state to true after sharing
+      // Track the share action visually by changing the state
       setShareClicked(true);
       setTimeout(() => setShareClicked(false), 1000); // Reset after 1 second
     } catch (err) {
-      console.log(err);
+      console.log(err); // Log any errors during the share action
     }
   };
 
