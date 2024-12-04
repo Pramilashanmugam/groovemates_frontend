@@ -19,7 +19,9 @@ import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
-  useRedirect("loggedIn");
+  useRedirect("loggedIn"); // Redirect if already logged in
+
+  // State to hold user input for signup
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -27,24 +29,35 @@ const SignUpForm = () => {
   });
   const { username, password1, password2 } = signUpData;
 
+  // State to hold any error messages from the API
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
+  /**
+   * Handles input change and updates the state for the corresponding field.
+   * @param {Object} event - The event triggered by the user input.
+   */
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value, // Dynamically update form field
     });
   };
 
+  /**
+   * Handles form submission by sending the signup data to the backend.
+   * On success, redirects to the signin page. On failure, displays error messages.
+   * @param {Object} event - The form submit event.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Send POST request to backend for registration
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      history.push("/signin"); // Redirect to signin page after successful signup
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data); // Store any error messages in state
     }
   };
 
@@ -66,6 +79,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display error messages for username if any */}
             {errors.username?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
@@ -83,6 +97,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display error messages for password1 if any */}
             {errors.password1?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -100,6 +115,7 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display error messages for password2 if any */}
             {errors.password2?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -112,6 +128,7 @@ const SignUpForm = () => {
             >
               Sign up
             </Button>
+            {/* Display non-field errors (e.g., password mismatch, etc.) */}
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}

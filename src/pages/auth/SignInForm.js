@@ -19,32 +19,46 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function SignInForm() {
-    const setCurrentUser = useSetCurrentUser();
-    useRedirect("loggedIn");
+  const setCurrentUser = useSetCurrentUser();
+  
+  // Redirects if the user is already logged in
+  useRedirect("loggedIn");
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
   const { username, password } = signInData;
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); // State to hold any errors from the API
 
   const history = useHistory();
+
+  /**
+   * Handles form submission by making a POST request to login.
+   * If successful, it stores the user data and redirects back.
+   * If there are errors, they are captured and displayed to the user.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Attempting to log the user in
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user);
-      history.goBack();
+      setCurrentUser(data.user); // Store user data in context
+      history.goBack(); // Redirect to the previous page
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data); // Set any errors to state
     }
   };
 
+  /**
+   * Updates the state for the form fields when the user types.
+   * @param {Object} event - The event triggered by the user input.
+   */
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value, // Dynamically set form field
     });
   };
 
@@ -65,6 +79,7 @@ function SignInForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display errors for username */}
             {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -82,6 +97,7 @@ function SignInForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {/* Display errors for password */}
             {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -93,6 +109,7 @@ function SignInForm() {
             >
               Sign in
             </Button>
+            {/* Display non-field errors */}
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
