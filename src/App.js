@@ -15,6 +15,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import SharedPosts from "./pages/shares/SharedPosts";
+import NotFound from "./components/NotFound";
 
 /**
  * The main component that sets up routing for the application.
@@ -94,7 +95,7 @@ function App() {
             render={() => <ProfileEditForm />}
           />
           {/* Default route for page not found */}
-          <Route render={() => <p>Page not found!</p>} />
+          <Route render={() => <NotFound />} />          
         </Switch>
       </Container>
     </div>
