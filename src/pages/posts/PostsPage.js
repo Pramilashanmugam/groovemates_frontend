@@ -4,19 +4,17 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import Post from "./Post";
 import Asset from "../../components/Asset";
-
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 /**
  * PostsPage component displays a list of posts with a search bar to filter posts.
@@ -29,7 +27,7 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] }); // State to hold fetched posts data
   const [hasLoaded, setHasLoaded] = useState(false); // Flag to track if posts have finished loading
   const { pathname } = useLocation(); // Get the current path of the page
-
+  const currentUser = useCurrentUser();
   const [query, setQuery] = useState(""); // State to store the search query
 
   // Fetch posts when the filter, query, or pathname changes
@@ -54,7 +52,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]); // Run effect whenever filter, query, or pathname changes
+  }, [filter, query, pathname, currentUser]); // Run effect whenever filter, query, or pathname changes
 
   return (
     <Row className="h-100">
