@@ -34,30 +34,33 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
   const [showReportModal, setShowReportModal] = useState(false);
-  const [shareClicked, setShareClicked] = useState(false); // State to track if share button is clicked
+  const [shareClicked, setShareClicked] = useState(false); // Track if share button is clicked
+  
 
   /**
-   * Redirects to the post edit page
+   * Redirects to the post edit page.
+   * Navigates to the post edit form using the post ID.
    */
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
   /**
-   * Deletes the current post and navigates back
+   * Deletes the current post and navigates back to the previous page.
+   * Makes a DELETE request to the API to remove the post.
    */
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      history.goBack();
+      history.goBack(); // Navigate back after deletion
     } catch (err) {
       console.log(err); // Log any errors that occur during deletion
     }
   };
 
   /**
-   * Handles liking a post by sending a POST request to the backend
-   * and updating the like count in the state.
+   * Handles liking a post.
+   * Sends a POST request to the backend and updates the like count.
    */
   const handleLike = async () => {
     try {
@@ -76,8 +79,8 @@ const Post = (props) => {
   };
 
   /**
-   * Handles unliking a post by sending a DELETE request to the backend
-   * and updating the like count in the state.
+   * Handles unliking a post.
+   * Sends a DELETE request to the backend and updates the like count.
    */
   const handleUnlike = async () => {
     try {
@@ -96,15 +99,14 @@ const Post = (props) => {
   };
 
   /**
-   * Handles sharing the post by sending a POST request to the backend
-   * and updating the share count in the state.
+   * Handles sharing the post.
+   * Sends a POST request to the backend and updates the share count.
+   * Tracks share action visually.
    */
   const handleShare = async () => {
     try {
-      // Send a POST request to share the post
       await axiosRes.post("/shares/", { post: id });
 
-      // Update the local state to increment the share count and mark post as shared by the user
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) =>
@@ -118,8 +120,7 @@ const Post = (props) => {
         ),
       }));
 
-      // Track the share action visually by changing the state
-      setShareClicked(true);
+      setShareClicked(true); // Indicate share action was clicked
       setTimeout(() => setShareClicked(false), 1000); // Reset after 1 second
     } catch (err) {
       console.log(err); // Log any errors during the share action
