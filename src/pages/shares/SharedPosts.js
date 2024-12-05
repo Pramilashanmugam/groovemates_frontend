@@ -12,32 +12,31 @@ import PopularProfiles from "../profiles/PopularProfiles";
  * It also handles infinite scrolling and shows a sidebar with popular profiles.
  *
  * @param {Object} props - The component props
- * @param {string} props.filter - A query string filter for fetching shared posts
  * @param {string} props.message - A message to display if no shared posts are found
  */
-const SharedPosts = ({ filter, message }) => {
+const SharedPosts = ({ message }) => {
   const [sharedPosts, setSharedPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   /**
-   * Fetches the shared posts data based on the provided filter.
+   * Fetches the shared posts data for all users.
    * Updates state with the fetched posts or error message if the request fails.
    */
   useEffect(() => {
     const fetchSharedPosts = async () => {
       try {
-        const { data } = await axiosRes.get(`/shares/`);
-        setSharedPosts(data); // Save all shares with post details
+        const { data } = await axiosRes.get('/shared-posts/'); // Fetch all shared posts
+        setSharedPosts(data);
       } catch (err) {
-        setError(err.response?.data?.detail || "Failed to load shared posts.");
+        setError("Failed to load shared posts.");
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchSharedPosts(); // Fetch the posts when the component mounts or filter changes
-  }, [filter]);
+    fetchSharedPosts(); // Fetch the posts when the component mounts
+  }, []);
 
   // Loading state: shows spinner while data is being fetched
   if (isLoading) {
@@ -73,17 +72,16 @@ const SharedPosts = ({ filter, message }) => {
               hasMore={!!sharedPosts.next} // Determines if there are more posts to load
               loader={<Spinner animation="border" />} // Loading indicator
             >
-              {sharedPosts.results.map((share) => (
-                <div key={share.id} className="mb-4">
+              {sharedPosts.results.map((post) => (
+                <div key={post.id} className="mb-4">
                   {/* Display the username who shared the post */}
                   <p className="text-muted">
                     <small>
-                      Shared by <strong>{share.user}</strong> on{" "}
-                      {new Date(share.created_at).toLocaleDateString()}
+                      Shared by <strong>{post.shared_by.join(", ")}</strong>
                     </small>
                   </p>
                   {/* Render the Post component */}
-                  <Post {...share.post} />
+                  <Post {...post} />
                 </div>
               ))}
             </InfiniteScroll>
