@@ -3,79 +3,62 @@ import { axiosRes } from "../../api/axiosDefaults";
 import Post from "../posts/Post";
 import { Spinner, Alert, Container, Collapse } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
+import { fetchMoreData } from "../../utils/utils"; // Ensure this function is correctly imported
+import { useCurrentUser } from "../../contexts/CurrentUserContext"; // Import the context hook
 import styles from "../../styles/ProfileSharedPosts.module.css"; // Customized styles
 import appStyles from "../../App.module.css"; // Global styles
 
 /**
- * ProfileSharedPosts component displays a list of shared posts of a profile.
+ * ProfileSharedPosts component displays a list of posts shared by the logged-in user.
  * It allows infinite scrolling and collapsible sections to view posts.
  *
  * @param {Object} props - The component props
- * @param {number} props.profileId - The ID of the profile whose shared posts are being displayed
  * @param {string} props.message - A message to display if no shared posts are available
  * @param {boolean} props.mobile - Flag to determine if the layout is for mobile
  */
-const ProfileSharedPosts = ({ profileId, message, mobile }) => {
-  // State for storing the shared posts data, loading state, and error message
+const ProfileSharedPosts = ({ message, mobile }) => {
   const [sharedPosts, setSharedPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [profile, setProfile] = useState(null);
-  const [isCollapsed, setIsCollapsed] = useState(false); // For controlling the collapse state of the posts section
-  const scrollContainerRef = useRef(null); // Ref for the scrollable container to manage scroll position
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const scrollContainerRef = useRef(null);
+  
+  const currentUser = useCurrentUser(); // Get the current logged-in user from the context
 
-  /**
-   * Fetches the profile data and the shared posts for the given profile ID.
-   * Filters posts shared by the profile owner and sets the posts and profile data in state.
-   */
   useEffect(() => {
-    const fetchProfileDataAndSharedPosts = async () => {
+    const fetchSharedPosts = async () => {
+      if (!currentUser) return; // Wait until the user is fetched
+
       try {
-        // Fetch profile data using the profileId
-        const { data: profileData } = await axiosRes.get(
-          `/profiles/${profileId}/`
+        const { data: postsData } = await axiosRes.get("/shared-posts/");
+        
+        // Filter posts to show only those shared by the logged-in user
+        const filteredPosts = postsData.results.filter((post) =>
+          post.shared_by.includes(currentUser.username) // Use the current user's username
         );
-        setProfile(profileData);
-
-        // Fetch shared posts related to the profile
-        const { data: postsData } = await axiosRes.get(
-          `/shared-posts/?profile_id=${profileId}`
-        );
-
-        // Filter the shared posts by the profile owner
-        const filteredPosts = postsData.results.filter(
-          (post) => post.shared_by === profileData.owner
-        );
+        
         setSharedPosts({ results: filteredPosts });
       } catch (err) {
-        setError("Failed to load shared posts."); // Handle error
+        setError("Failed to load your shared posts.");
       } finally {
-        setIsLoading(false); // Set loading state to false after the data is fetched
+        setIsLoading(false);
       }
     };
 
-    fetchProfileDataAndSharedPosts(); // Invoke the function to fetch data
-  }, [profileId]);
+    fetchSharedPosts();
+  }, [currentUser]); // Re-fetch posts when currentUser changes
 
-  /**
-   * Automatically scrolls the container to the bottom when new posts are loaded.
-   */
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop =
         scrollContainerRef.current.scrollHeight;
     }
-  }, [sharedPosts]); // Triggers whenever new posts are added
+  }, [sharedPosts]);
 
-  /**
-   * Toggles the collapse state of the shared posts section.
-   */
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-  // Loading state: shows spinner while data is being fetched
   if (isLoading) {
     return (
       <div
@@ -87,7 +70,6 @@ const ProfileSharedPosts = ({ profileId, message, mobile }) => {
     );
   }
 
-  // Error state: displays an error message if the data fails to load
   if (error) {
     return (
       <Container className="my-4">
@@ -96,7 +78,6 @@ const ProfileSharedPosts = ({ profileId, message, mobile }) => {
     );
   }
 
-  // Rendered output: display shared posts or a message if no posts exist
   return (
     <Container
       className={`${appStyles.Content} ${
@@ -109,37 +90,42 @@ const ProfileSharedPosts = ({ profileId, message, mobile }) => {
         style={{ cursor: "pointer" }}
       >
         <p>
-          <i className="fa-solid fa-share"></i> {profile?.owner}'s shared posts
+          <i className="fa-solid fa-share"></i> My Shared Posts
         </p>
       </div>
       <hr />
       <Collapse in={!isCollapsed}>
         <div
-          ref={scrollContainerRef} // Reference for scrollable container
+          ref={scrollContainerRef}
           className={`${appStyles.ScrollableContainer} ${styles.ScrollableContainer}`}
         >
-          {/* Infinite scrolling for shared posts */}
           {sharedPosts.results.length ? (
             <InfiniteScroll
-              dataLength={sharedPosts.results.length} // Total number of posts loaded
-              next={() => fetchMoreData(sharedPosts, setSharedPosts)} // Function to load more posts
-              hasMore={!!sharedPosts.next} // Determines if there are more posts to load
-              loader={<Spinner animation="border" />} // Loading indicator
+              dataLength={sharedPosts.results.length}
+              next={() => fetchMoreData(sharedPosts, setSharedPosts)}
+              hasMore={!!sharedPosts.next}
+              loader={<Spinner animation="border" />}
               scrollableTarget="scrollableDiv"
             >
               {sharedPosts.results.map((post) => (
                 <div key={post.id} className="mb-4">
                   <p className="text-muted">
                     <small>
-                      Shared by <strong>{post.shared_by}</strong>
+                      {/* Display only the logged-in user's name if they are in the shared_by list */}
+                      Shared by{" "}
+                      <strong>
+                        {post.shared_by.includes(currentUser.username)
+                          ? currentUser.username
+                          : ""}
+                      </strong>
                     </small>
                   </p>
-                  <Post {...post} /> {/* Render individual post */}
+                  <Post {...post} />
                 </div>
               ))}
             </InfiniteScroll>
           ) : (
-            <p className="text-center text-muted">{message}</p> // Message if no posts are found
+            <p className="text-center text-muted">{message}</p>
           )}
         </div>
       </Collapse>
