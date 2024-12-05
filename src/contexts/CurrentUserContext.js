@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useHistory } from "react-router";
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
 // Creating context for the current user and a function to update it
 export const CurrentUserContext = createContext();
@@ -22,12 +23,12 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 /**
  * CurrentUserProvider component provides the current user context
  * to the rest of the app.
- * 
+ *
  * It handles:
  * - Fetching the user data when the component mounts
  * - Setting up Axios interceptors for handling authentication state
  * - Managing the user session (logging out when necessary)
- * 
+ *
  * @param {object} props - The component props, including the children to be rendered.
  * @returns {JSX.Element} - The rendered context providers wrapping the children.
  */
@@ -55,24 +56,27 @@ export const CurrentUserProvider = ({ children }) => {
   /**
    * useMemo hook sets up interceptors to handle token refresh
    * and manage user session.
-   * - Request interceptor: Tries to refresh the token on each request. 
+   * - Request interceptor: Tries to refresh the token on each request.
    * - Response interceptor: Tries to refresh the token if the response is 401 (Unauthorized).
    */
   useMemo(() => {
     // Request interceptor to refresh token
     axiosReq.interceptors.request.use(
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/"); // Try to refresh token
-        } catch (err) {
-          // If token refresh fails, log out the user and redirect to sign-in
-          setCurrentUser((prevCurrentUser) => {
-            if (prevCurrentUser) {
-              history.push("/signin");
-            }
-            return null;
-          });
-          return config; // Return config to continue the request
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/"); // Try to refresh token
+          } catch (err) {
+            // If token refresh fails, log out the user and redirect to sign-in
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                history.push("/signin");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
+            return config; // Return config to continue the request
+          }
         }
         return config; // Return config if token refresh is successful
       },
@@ -85,7 +89,8 @@ export const CurrentUserProvider = ({ children }) => {
     axiosRes.interceptors.response.use(
       (response) => response, // Return the response if successful
       async (err) => {
-        if (err.response?.status === 401) { // Check if error is Unauthorized
+        if (err.response?.status === 401) {
+          // Check if error is Unauthorized
           try {
             await axios.post("/dj-rest-auth/token/refresh/"); // Try to refresh the token
           } catch (err) {
@@ -95,6 +100,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null; // Clear the user context
             });
+            removeTokenTimestamp();
           }
           return axios(err.config); // Retry the original request after token refresh
         }
