@@ -10,6 +10,7 @@ import {
 import Avatar from "./Avatar"; // Importing Avatar component to display the user's profile image
 import axios from "axios"; // Importing axios for API calls
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle"; // Importing a custom hook for toggling dropdown on outside click
+import { removeTokenTimestamp } from "../utils/utils";
 
 /**
  * NavBar component renders the navigation bar for the website.
@@ -33,6 +34,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/"); // Post request to log out the user
       setCurrentUser(null); // Clear the current user context
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err); // Log any errors encountered during the logout process
     }
