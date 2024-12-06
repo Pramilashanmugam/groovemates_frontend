@@ -229,7 +229,6 @@ The header consists of the logo, which is always arranged on the left and acts a
 **For Logged-In Users:** <br>
 - *Home*: Same as the logged-out view, showing all active Posts.
 - *Addpost*: Directs to the page where the user can create a new Post.
-participating in.
 - *Feed*: Shows all posts of users who has been followed by the currentuser.
 - *Liked*: Displays all the posts which was liked by the user.
 - *Shared Posts*: It has all the posts which was shared by all other users.
@@ -296,5 +295,220 @@ To Sign out, the user simply needs to click on the "Sign Out" option in the menu
 Screenshot after signed out <br>
 ![Screenshot for Signed out ](src/documentation/images/logout_confirmation.png)<br>
 
+</details> 
+<details>
+<summary> User Profile </summary>
+<br>
+
+The user can access their profile only if logged-in through the navigation bar, from the "Most Popular Profiles" section (if they are listed there), or can say by clicking on the profile picture it will take you to profile page. <br>
+
+The profile contains the following components:<br>
+**Profile Picture**: If the user hasn’t uploaded a picture, a placeholder image of default avatar icon will appear throughout the site is shown.<br>
+**Username**: The username that the user created during the signup process.<br>
+**Follow/Unfollow button**: This button appears only if the user being viewed is not the currently logged-in user.<br>
+**Overview of Posts**: Displays the number of Posts the user has currently created.<br>
+**Followers and Following Counts**: Shows how many people are following the user and how many people the user is following.<br>
+**"Bio" Description**: A personal description if the user has filled it out.<br>
+**My Shared Posts**: A section on the sidebar where the user's Shared post will be displayed under most followed profile.<br>
+
+When a user creates a Post, the Post count on their profile increases. If the user follows or unfollows another user, the followers count on their profile will increase or decrease accordingly. Similarly, if another user follows or unfollows them, the following count will be updated. Additionally, the follow/unfollow button will change to reflect the current following status.
+Below these components, there is an overview of all the Posts the user currently has online.If the user has created more than 10 Posts, additional Posts will continue to load as the user scrolls down (infinite scroll functionality). During this process, a spinner is briefly displayed to indicate that more content is being loaded.<br>
+When a user visits their own profile, dropdown point towards left in grey appear on the right side. Clicking on these dropdown reveals a menu where the user can edit their profile, username, or password. Each option redirects the user to the corresponding form page for making the desired changes. <br>
+When editing their profile, the user must ensure that the profile picture does not exceed 2 MB in size.
+<br>
+
+Screenshot of profile page(desktop view) after signing up:<br>
+![Screenshot of profile page](src/documentation/images/profile_signup.png)<br>
+Screenshot of profile page(mobile):<br>
+![Screenshot of profile page](src/documentation/images/mobile_profile_view.png)<br>
+Screenshot of profile page(desktop):<br>
+![Screenshot of profile page](src/documentation/images/desktop_profile_view.png)<br>
+
+**Edit a profile**<br>
+Screenshot of profile edit button:<br>
+![Screenshot of profile edit button](src/documentation/images/profile_edit_dropdown.png)<br>
+Screenshot of profile page with edit menu(desktop):<br>
+![Screenshot of profile page with edit menu on larger screens ](src/documentation/images/desktop_edit_dropdown.png)<br>
+Screenshot of profile page with edit menu(mobile):<br>
+![Screenshot of profile page with edit menu on mobile view](src/documentation/images/mobile_profileedit_menu.png)<br>
+Screenshot of edited username page:<br>
+![Screenshot of edit username](src/documentation/images/success_edit_profile.png)<br>
+Screenshot of error during editing username page:
+![Screenshot of edit profile page with error for space in the name](src/documentation/images/incorrect_value_profileedit.png)<br>
+
+**Edit username** <br>
+Screenshot of edit password page:<br>
+![Screenshot of edit password](src/documentation/images/username_edit_view.png)<br>
+
+**Edit password**<br>
+Screenshot of edit password page:<br>
+![Screenshot of edit password](src/documentation/images/password_edit_view.png)<br>
+
 </details>
+
+<details>
+<summary> Post Management</summary>
+<br>
+Post Management includes the following topics:<br>
+
+**Adding a new Post**: Users can create and submit new Posts through a designated form.
+**Post Detail View**: Users can view detailed information about a specific Post by clicking on the title or the image in the Post card.<br>
+**Editing or deleting an existing Post**: Users can modify or remove their existing Posts through an edit or delete option.<br>
+**Overview of all existing Posts on Homepage**: The home page displays a comprehensive list of all available Posts.<br>
+**Overview of Posts created by the user on their profile page**: Users can view a summary of all Posts they have created from their profile page.<br>
+**Overview of liked Posts**: Users can access a list of Posts they have liked for quick reference.<br>
+**Overview of Posts whom user following in Feed**: Users can view a list of Posts of the user who are being followed.  <br>
+**Overview of Posts on Shared posts**: Users can view a list of all shared Posts of all the users with the name of people who all have shared the post. <br>
+
+ - **Adding a new Post**<br>
+To add a Post, the user must sign up and log in. They can then navigate to the appropriate page via the navigation bar. All form fields are required except for the description. The date must be today or in the future. The user can upload an image for the Post. If no image is uploaded, a placeholder image will be shown instead.
+If a required field is not filled out, an error message will be shown indicating which fields need to be completed. 
+After the user clicks the 'Create' button and all required fields are correctly filled, they will be redirected to the detail page of this Post. <br>
+
+Screenshot of 'add a Post' page:<br>
+![Screenshot of add a new Post page](src/documentation/images/create_post_view.png)<br>
+Screenshot of error message for image larger than 2 MB:<br>
+![Screenshot of message](src/documentation/images/large_picture_notaccepted.png)<br>
+Screenshot of error message for date validation:<br>
+![Screenshot of message for past date](src/documentation/images/past_date_notaccepted.png)<br>
+![Screenshot of message for future date more than 10 years](src/documentation/images/future_date_above10years_notaccepted.png)<br>
+
+- **Post detail view**<br>
+A Post contains several elements in its detailed view. The following elements are included for the owner of the Post:<br>
+  - *Event*: The title of the event. <br>
+  - *Image*: The image associated with the Post or the placeholder image <br>
+  - *Description*: A brief description of the Post, if given by the user. <br>
+  - *Date, Time, and Location*: Details about when and where the Post will take place.<br>
+  - *Last Updated*: Information on when the Post was last updated. <br>
+Below these elements, there are three icons in a row with numbers next to each for counting: <br>
+  - *Heart Icon*: Displays the number of likes. If the currently logged-in user has liked the Post, the heart will be filled with red.<br>
+  - *Comment Icon*: Shows the number of comments associated with the Post.<br>
+  - *share Icon*: Displays the number of shares. If the currently logged-in user click the share the icon will turn to blue.<br>
+  - *Report button*: logged in user can report a post incase of spam, irrelevant. Submitted reports will be accessed only by admin.
+Underneath these icons is the comments section.<br>
+
+
+Screenshot of Post detail page for owner of the Post in mobile view, dropdown for edit appears:<br>
+![Screenshot of Post detail page for owner of Post](src/documentation/images/post_owner_mobile_view.png)<br>
+Screenshot of Post detail page for other users of the Post in mobile view, dropdown for edit disppears:<br>
+![Screenshot of Post detail page for other user of Post](src/documentation/images/mobile_post_view.png)<br>
+Screenshot of Post detail page for owner of the Post in desktop view, dropdown for edit appears:<br>
+![Screenshot of Post detail page for owner of Post on larger screens](src/documentation/images/post_view_for_owner.png)<br>
+Screenshot of Post detail for others of the Post in desktop view, dropdown for edit disappears:<br>
+![Screenshot of Post detail for other user of Post](src/documentation/images/desktop_post_view.png)<br>
+Screenshot of edit option for a post.
+![Screenshot of Post detail page edit menu](src/documentation/images/edit_dropdown.png)<br>
+<br>
+
+
+- **Edit a Post**<br>
+As part of the full CRUD functionality, the Post owner has the ability to edit the Post. When a user clicks the link to edit their Post, they are redirected to a form page where the existing data is already populated in the corresponding fields. The form retains the same validations as the "Create a Post" form, including image size limits (maximum 2 MB), required fields, and date validation (the date must be today or in the future). After the user clicks the "save" button, they are redirected to the Post's detail page where you can see the update post.<br>
+
+Screenshot of post before edit<br>
+![Screenshot of before edit](src/documentation/images/edit_form_for_post.png)<br>
+Screenshot of post after edit:<br>
+![Screenshot of after edit](src/documentation/images/edited_post_with_valid_details.png)<br>
+Screenshot of validation message during edit:<br>
+![Screenshot of validation in editing process](src/documentation/images/edit_post_invalid_date.png)<br>
+
+
+- **Delete a Post**<br>
+As part of the full CRUD functionality, the Post owner can delete a Post. This can be achieved from the Post overview by clicking on the dropdown icon as well as from the detail page of the Post. After successful deletion, the user is redirected back to the homepage and the corresponding Post is deleted from the database and the overview.<br>
+
+Screenshot of delete icon on post<br>
+![Screenshot of delete confirmation page](src/documentation/images/edit_dropdown.png)<br>
+
+
+- **Displaying an overview of all existing Posts on the Homepage.**<br>
+The user can access the overview page of all Posts that have been created by clicking on the homepage. The user can access the overview page displaying all created Posts by clicking on the "Home" link in the navigation bar or by clicking on the logo. This page presents Posts sorted by the date they were added, with the most recent ones appearing first. Each Post is displayed in a card format that includes essential details such as the Event, description, date, time, location and counts of likes, shares, comments and report. Additionally, the last updated timestamp is shown. The overview page features infinite scroll functionality: when the user scrolls through 10 Posts, the next set of Posts is automatically loaded. During this process, a spinner is briefly displayed to indicate that more content is being loaded. 
+In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts.
+ <br>
+
+
+link for Post overview page <br>
+[Click here to view Post Overview.](https://groovemates-frontend-b3335269700f.herokuapp.com/)<br>
+
+- **Displaying an overview of liked Posts**<br>
+When a user likes a Post by clicking on the heart icon within the Post card, they can later access an overview page of all their liked Posts. This page can be reached through the navigation bar by clicking on *liked*. The liked Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format. This includes the event, description, date, time, location and counts of likes, shares, comments and report. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts. <br>
+
+- **Displaying an overview of Shared Posts**<br>
+When a user clicks the share icon the share counts increases by one and the post will get posted to the Shared Post link which can be reached on the navigation bar. The Shared Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format. This includes the event, description, date, time, location and counts of shares, likes,, comments and report. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts.
+
+- **Displaying an Overview of Posts from followed Users**<br> 
+As a user, you can view an overview of all Posts created by the users you follow. This page can be reached through the navigation bar by clicking the link  *Feed* in the Navbar. This page showcases Posts created by the followed users, presented in a card format similar to the homepage overview. Each card includes essential details such as the event, description, date, time, location and counts of shares, likes, comments and report.
+The page supports infinite scroll functionality: after scrolling through the initial set of entries, more Posts will be loaded automatically, accompanied by a spinner indicating the loading process. On mobile devices, the Posts are displayed with the most active profiles shown prominently above them, while on desktop, these profiles are displayed alongside the Posts.
+
+- **Displaying an overview of all Posts created by user**<br>
+As already explained in the profile feature, all Posts created by the user are listed on their profile.
+
+</details>
+
+<details>
+<summary> User Interaction </summary>
+<br>
+Users can interact with each other in the following ways:
+- Commenting on a Post by going to the detailed view of the Post, which can also be accessed by clicking on the comment icon.
+- Sharing the post shows the interest on the event and also helping in spreading the word.
+- liking a Post by clicking on the heart icon.
+- Follow/Unfollow functionality by clicking on the Follow/Unfollow button, which is available in the "Most followed profiles" section, the shared posts, and the profile overview. This option is only available when the logged-in user is not viewing their own profile. <br>
+<br>
+
+**share and like Icons**: <br>
+The icons representing share (sharing arrow icon) and likes (heart icon) dynamically change based on the user's status:<br>
+- *share*: When the user clicks on the share icon, it toggles their share status. If the user is has shared a post, the icon will change to blue colour and the share count gets increased accordingly. Users are restricted to share a Post only once.<br>
+- *likes*: When the user clicks on the heart icon, it toggles the like status of the Post. If the user has likeed the Post, the heart icon will turn red, and the like count will increase accordingly.<br>
+
+**Report Button:**
+The Report button is for the user to inform the admin about a post if it is not relevant to the website goal. On clicking the button, a form containing the reasons for the report and description is available. User can choose the reason from dropdown and share their reasons in description and then submit. On Submit, user gets a confirmation that the report will be reviewed by admin.
+
+Screenshot of Report button on post for logged in user<br>
+![Screenshot to report button](src/documentation/images/report_button-loggedin.png)<br>
+Screenshot of Report button on post for logged out user<br>
+![Screenshot to report button](src/documentation/images/report_loggedout.png)<br>
+Screenshot of Report Form<br>
+![Screenshot to report Form](src/documentation/images/report_creation.png)<br>
+Screenshot of Report Reasons dropdown<br>
+![Screenshot to report reasons](src/documentation/images/report_reasons.png)<br>
+Screenshot of Report confirmation message on submit<br>
+![Screenshot to report confirmation](src/documentation/images/report_confirmation.png)<br>
+
+
+**Comment Section:**
+Users can interact with the Post by adding comments: <br>
+
+The user's profile image is displayed next to the comment form field. After entering a comment and clicking the "post" button, the comment is displayed under the Post in a list format. Each comment includes the commenter's profile image, the time when the comment was added, and the comment content.
+If the currently logged-in user is the owner of the comment, dropdown icon appear next to the comment, providing options to edit or delete the comment. <br>
+- *Edit*: When the user clicks "Edit" on their comment, the comment form reopens with the existing content. The user can then update the comment and save the changes. Alternatively, they can cancel the edit, which will close the form, leaving the comment unchanged. <br>
+- *Delete*: When the user clicks "Delete" on their comment. Upon confirming the deletion, the comment is removed from the list.
+
+Screenshot of comment icon on post<br>
+![Screenshot to create a comment](src/documentation/images/comment_create.png)<br>
+Screenshot of comment form<br>
+![Screenshot of comment form](src/documentation/images/comment_form.png)<br>
+Screenshot of list of comments<br>
+![Screenshot of comment form](src/documentation/images/comment_list.png)<br>
+Screenshot of edit/delete option for a comment<br>
+![Screenshot of comment form](src/documentation/images/comment_edit_delete.png)<br>
+
+
+</details>
+
+details>
+<summary> 404 - Not Found page </summary>
+<br>
+
+A dedicated 404 error page has been created to handle instances where users navigate to a non-existent page. The page features a placeholder image of maginifying glass searching to indicate that the requested page could not be found. Below the image, there is a short message: "Sorry, the page you are looking for doesn't exists".<br>
+
+![Screenshot of 404 page](src/documentation/images/page_not_found.png)<br>
+</details>
+
+
+### Features, which I would like to implement in the future
+
+- *Delete a Profile*: Allow users to permanently delete their profiles from the platform. This feature will include necessary confirmations and safeguards to prevent accidental deletions.<br>
+- *Nested Comments*: I have already included the required fields in backend api to create a nested comments, due to time constraint i would like to implement in the near future.
+- *Confirmation messages*: success messages for all the functionality like delete, updated etc
+- *Delete the outdated posts*: Want to implement the outdated posts to keep the post page more lively.
+
+## Reusable Components
 
