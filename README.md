@@ -109,3 +109,192 @@ User Stories with their id:  <br>
 ## Design
 
 ### Wireframes
+
+Due to lack of time, some of the originally planned features that can be seen on the wireframe had to be deleted or implemented differently.
+
+<details>
+<summary> Home page </summary>
+<br>
+Wireframe for home page for logged-out user: <br>
+
+![Mobile wireframe](src/documentation/images/mobile_logout.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_logout.png)<br>
+Wireframes for home page for logged-in user: <br>
+![Mobile wireframe](src/documentation/images/mobile_loggedin.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_loggedin.png)<br>
+
+</details>
+<details>
+<summary> Sign up & Sign In </summary>
+<br>
+User authentication was implemented using dj-rest-auth. This library provides a comprehensive set of features for user management, including registration, login, and logout functionalities.
+For the final design of the authentication views, I utilized the Code Institute moments walkthrough design, which closely aligns with the wireframes originally created for the project. This approach ensured a consistent user experience throughout the application.<br>
+
+![Mobile wireframe](src/documentation/images/mobile_signup.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_signup.png)<br>
+![Mobile wireframe](src/documentation/images/mobile_signin.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_signin.png)<br>
+
+
+</details>
+<details>
+<summary> Create a Post </summary>
+<br>
+To create a Post, a form was designed that closely resembles the one outlined in the wireframes. This form includes fields for all necessary information, ensuring a seamless user experience that aligns with the original design specifications.<br>
+
+![Mobile wireframe](src/documentation/images/mobile_create_post.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_create_post.png)<br>
+
+</details>
+
+<details>
+<summary> Profile Page </summary>
+<br>
+
+![Mobile wireframe](src/documentation/images/mobile_profile_page.png)<br>
+![Desktop wireframe](src/documentation/images/desktop_profile_page.png)<br>
+
+</details>
+
+### Imagery
+ 
+The cat listening to music, which can be seen in the placeholder images in create a post, was found at Pexel.
+
+![placeholder image](src/assets/upload.png)<br>
+
+#### Logo
+
+The logo for "GrooveMates" has a modern and vibrant design, emphasizing a music-themed aesthetic. Here are its key features:
+
+Color Scheme: It features a gradient of neon colors, predominantly pinks, purples, and blues, set against a dark background. This gives it a futuristic and energetic vibe.
+
+Central Icon: A music note is at the heart of the design, symbolizing music and rhythm, enclosed within concentric circular lines that resemble sound waves or records.
+
+Typography: The name "GrooveMates" is written in bold, modern font with "Alternative" in a smaller, more understated style. The font choice complements the music theme with a sleek and contemporary look.
+
+Visual Effects: The logo incorporates dynamic elements like dots and lines, adding movement and vibrancy, suggestive of sound or pulsating beats.
+
+Overall Design: The circular layout emphasizes inclusivity and community, aligning with the concept of connecting people through music.
+
+It's a visually engaging design that perfectly captures the essence of a music-focused, modern brand.
+
+![Logo for Groovemates](src/assets/logo.png)<br>
+
+#### Favicon
+
+The favicon was created with [Favicon.io](https://favicon.io/favicon-generator/) by using the logos color theme and music note.<br>
+
+![Favicon for Groovemates](src/documentation/images/favicon_image.png)<br>
+
+#### Colour Scheme:
+
+The color palette was created based on the neon colors of the logo text with [ColorSpace](https://mycolor.space/?hex=%23FF3131&sub=1). The navbar has the gradient pastel colours.
+
+<details>
+<summary> Click here to see the colour palette </summary>
+<br>
+
+I created this colour palette with [coloors](https://coolors.co/).<br>
+![Colour palette ](src/documentation/images/colour_palette.png)<br>
+
+</details>
+
+### Typography
+
+I have used "DM Sans", sans-serif font through out the project.
+
+## Structure
+
+All information about the structure can be found in the README of the API [here](https://github.com/Pramilashanmugam/GrooveMates_backend)
+
+## Features
+
+### Existing Features
+
+To learn more about each feature, please click on the respective headline
+
+<details>
+<summary> Header with logo and navbar </summary>
+<br>
+
+To ensure uniformity and a sense of familiarity for users, all pages include the same header with navigation links depending on the authentication status of the user. 
+The header consists of the logo, which is always arranged on the left and acts as a link to return to the main page. On the right side is the navigation bar, which turns into a clickable burger menu on smaller screens. Depending on whether the user is logged in or not, the navigation elements adapt accordingly.<br>
+<br>
+
+**For Logged-Out Users:**<br>
+- *Home*: Redirects to the home page, displaying an overview of all active Groovemates posts from latest to old. <br>
+- *Sign Up*: Takes the user to the registration page to create an account and begin interacting with the site. <br>
+- *Log In*: Directs to the login page for returning users to access their accounts.<br>
+
+**For Logged-In Users:** <br>
+- *Home*: Same as the logged-out view, showing all active Posts.
+- *Addpost*: Directs to the page where the user can create a new Post.
+participating in.
+- *Feed*: Shows all posts of users who has been followed by the currentuser.
+- *Liked*: Displays all the posts which was liked by the user.
+- *Shared Posts*: It has all the posts which was shared by all other users.
+- *Avatar/Profile*: It displays the number of followers, following, number of post uploaded by currentuser, on sidebar can view the shared post of only the current user.
+- *Sign Out*: Allows the user to securely log out of their account.
+
+<br>
+
+View for users who are not logged in:<br>
+  - Screenshot of header in mobile view:<br>
+  ![Screenshot header mobile view](src/documentation/images/mobile_navbar_display.png)<br>
+  - Screenshot of header in mobile view with toggled navigation:<br>
+  ![Screenshot header mobile view toggle](src/documentation/images/mobile_view_loggedout_display.png)<br>
+  - Screenshot of header on larger screens:<br>
+  ![Screenshot Header on larger screens](src/documentation/images/desktop_navbar_view.png)<br>
+
+
+  View for users who are logged in:<br>
+  - Screenshot of header in mobile view:<br>
+  ![Screenshot header for logged in user mobile view](src/documentation/images/mobile_navbar_loggedin_view.png)<br>
+  - Screenshot of header in mobile view with toggled navigation:<br>
+  ![Screenshot header for logged in user mobile view toggle](src/documentation/images/mobile_navbar_toggled_loggedin.png)<br>
+  - Screenshot of header in desktop view:<br>
+  ![Screenshot header for logged in user on larger screens](src/documentation/images/desktop_navbar_loggein_view.png)<br>
+<br>
+
+</details>
+
+<details>
+<summary> Favicon & Title</summary>
+<br>
+
+To create a consistent appearance, the logo, which appears in a square form with edges rounded in the navigation bar, was adapted into a background transparent version to create the favicon.<br>
+Screenshot of the favicon:<br>
+![Screenshot of favicon](src/documentation/images/favicon_view.png)<br>
+
+</details>
+
+<details>
+<summary> User authentication </summary>
+<br>
+
+The user authentication system is implemented using the [dj-rest-auth](https://dj-rest-auth.readthedocs.io/en/latest/) framework, ensuring secure and reliable access to the site. This feature includes standard registration, login, and logout processes, with error handling and feedback tailored to match the application's design.<br> 
+
+**Sign Up**<br>
+Users who are new to the site or have not yet created an account, can select the "Sign up" option from the Navigation Bar to register for a new user account. This process utilizes the standard dj-rest/auth/registration method for user account creation. After properly registering, the user will be redirected to the login page and a success message will be displayed for two seconds.<br>
+Screenshot for Sign Up: <br>
+![Screenshot of the Sign Up page](src/documentation/images/signup_page.png)<br>
+Screenshot for Sign Up with Error message for username: <br>
+![Screenshot of the Sign Up page with error message username](src/documentation/images/username_already_exists.png)<br>
+Screenshot for Sign Up with Error message for password: <br>
+![Screenshot of the Sign Up page with error message password](src/documentation/images/password_mismatch_signup.png)<br>
+
+
+**Sign in** <br>
+Users who already have an account can click on the "Signin" option in the Navigation Bar to access their account. This page utilizes the standard dj-rest/auth/login method for user authentication. After the user correctly logs in, the user is redirected to the homepage, where an overview of all created Posts is shown.<br>
+Screenshot for Log In: <br>
+![Screenshot of the Login page](src/documentation/images/signin_page_view.png)<br>
+Screenshot for Log In with error message: <br>
+![Screenshot of the Login page with error message](src/documentation/images/signin_incorrect_details.png)<br>
+
+**Sign Out**<br>
+To Sign out, the user simply needs to click on the "Sign Out" option in the menu. Upon doing so, the user is successfully logged out via the /dj-rest-auth/logout/ endpoint, is redirected to the log-in page.<br>
+Screenshot after signed out <br>
+![Screenshot for Signed out ](src/documentation/images/logout_confirmation.png)<br>
+
+</details>
+
