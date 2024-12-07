@@ -309,7 +309,7 @@ The profile contains the following components:<br>
 **Overview of Posts**: Displays the number of Posts the user has currently created.<br>
 **Followers and Following Counts**: Shows how many people are following the user and how many people the user is following.<br>
 **"Bio" Description**: A personal description if the user has filled it out.<br>
-**My Shared Posts**: A section on the sidebar where the user's Shared post will be displayed under most followed profile.<br>
+**My Shared Posts**: A section on the sidebar where the user's Shared post will be displayed below the most followed profile.<br>
 
 When a user creates a Post, the Post count on their profile increases. If the user follows or unfollows another user, the followers count on their profile will increase or decrease accordingly. Similarly, if another user follows or unfollows them, the following count will be updated. Additionally, the follow/unfollow button will change to reflect the current following status.
 Below these components, there is an overview of all the Posts the user currently has online.If the user has created more than 10 Posts, additional Posts will continue to load as the user scrolls down (infinite scroll functionality). During this process, a spinner is briefly displayed to indicate that more content is being loaded.<br>
@@ -432,7 +432,7 @@ link for Post overview page <br>
 When a user likes a Post by clicking on the heart icon within the Post card, they can later access an overview page of all their liked Posts. This page can be reached through the navigation bar by clicking on *liked*. The liked Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format. This includes the event, description, date, time, location and counts of likes, shares, comments and report. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts. <br>
 
 - **Displaying an overview of Shared Posts**<br>
-When a user clicks the share icon the share counts increases by one and the post will get posted to the Shared Post link which can be reached on the navigation bar. The Shared Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format. This includes the event, description, date, time, location and counts of shares, likes,, comments and report. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts.
+When a user clicks the share icon the share counts increases by one and the post will get posted on the Shared Post link which can be reached on the navigation bar. Users a restricted to share a Post only once, if they attempt to share more than once a message will displayed you cannot share more than once. The Shared Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format. This includes the event, description, date, time, location and counts of shares, likes, comments and report, additionally it also show the list of user's name who have shared the post on top of the post. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts.
 
 - **Displaying an Overview of Posts from followed Users**<br> 
 As a user, you can view an overview of all Posts created by the users you follow. This page can be reached through the navigation bar by clicking the link  *Feed* in the Navbar. This page showcases Posts created by the followed users, presented in a card format similar to the homepage overview. Each card includes essential details such as the event, description, date, time, location and counts of shares, likes, comments and report.
@@ -506,9 +506,123 @@ A dedicated 404 error page has been created to handle instances where users navi
 ### Features, which I would like to implement in the future
 
 - *Delete a Profile*: Allow users to permanently delete their profiles from the platform. This feature will include necessary confirmations and safeguards to prevent accidental deletions.<br>
-- *Nested Comments*: I have already included the required fields in backend api to create a nested comments, due to time constraint i would like to implement in the near future.
+- *Nested Comments*: I have already included the required fields in backend api to create a nested comments, due to time constraint i was unable to complete the implementation and would like to implement in the near future.
 - *Confirmation messages*: success messages for all the functionality like delete, updated etc
 - *Delete the outdated posts*: Want to implement the outdated posts to keep the post page more lively.
 
 ## Reusable Components
+
+Reusable components are a core principle in React, enabling developers to write modular, maintainable, and efficient code. Examples of reusable components in this project:<br>
+
+
+**Assets.js**<br>
+ This component is designed to handle the display of a loading spinner, an image, or a message, depending on the props passed to it. <br>
+It was utilized in various parts of the application. Here's how it was employed across different components:
+- PostCreateForm: To display a placeholder image encouraging the user to upload one, accompanied by a message.
+- PostPage: To load the spinner while the Post content is being retrieved.
+- PostsPage: To load the spinner during data retrieval and display a placeholder image with a corresponding message when no Posts could be found.
+- PopularProfiles: To display a spinner while the user profiles are being loaded.
+- SharedPosts: To load the spinner while the shared Post content is being retrieved.
+- ProfileSharedPosts: To load the spinner while the shared Post content is being retrieved.
+- ProfilePage: To load the spinner during profile retrieval and to display a placeholder image if the user hasn't created any Posts yet.
+
+This widespread usage highlights the Asset component's role in providing consistent visual feedback and handling various states, such as loading and empty data scenarios, across the application.<br>
+
+**Avatar.js**<br>
+The Avatar component was utilized across various parts of the application to ensure a consistent and user-friendly display of profile images and related text. Here's how it was implemented in different components:
+- Profile: Displayed the user's avatar
+- Comments Section: Displayed avatars next to each comment, allowing users to visually connect comments with the respective user.
+- Most followed Profiles Component: Highlighted active users' avatars, making it easy to recognize frequent contributors and follow/unfollow them.
+This component was crucial in maintaining a consistent and polished appearance across different parts of the application, ensuring that user avatars were displayed effectively in various contexts.
+
+**MoreDropdown.js**<br>
+The MoreDropdown component is designed to provide users with quick access to editing or deleting content within the application. This component utilizes Bootstrap's Dropdown.<br> 
+The *ProfilePage, Comment, Post* extends the functionality of the *MoreDropdown* by offering component-specific actions. This component provides options to edit/Delete option in various components like ProfilePage/Post/Comments, for example in ProfilePage user can change the username, or update the password. Each option redirects the user to the appropriate editing page, leveraging React Router's useNavigate hook for seamless navigation. <br>
+The MoreDropdown component enhances user experience by providing a consistent and intuitive way to manage content and profiles within the application, making it easy to access essential editing and deletion functionalities while ensuring that any critical actions are thoroughly confirmed before being executed.<br>
+
+**NavBar.js**<br>
+The Navbar component played a central role in the application's navigation, offering a consistent and intuitive user experience across the site. It was designed to adapt dynamically based on the user's authentication status, providing access to relevant features and pages.<br>
+
+**NotFound.js**<br>
+The NotFound component is a specialized component designed to handle 404 errors, providing users with a clear indication that the page they are trying to access does not exist.
+
+## Bugs and Fixes
+
+
+## Technologies Used
+
+### Languages:
+- [CSS](https://en.wikipedia.org/wiki/CSS)
+- [JavaScript](https://www.javascript.com/)
+- [JSX](https://de.legacy.reactjs.org/docs/introducing-jsx.html)
+
+### Tools:
+- [Git](https://git-scm.com/) was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+- [GitHub](https://github.com/) was used to save and store the files for the website.
+- [Heroku](https://www.heroku.com) was used to deploy the application.
+- [CodeInstitute IDE - Gitpod](https://codeinstitute-ide.net/) was used as IDE. 
+- [Code Insitute Database Maker](https://dbs.ci-dbs.net/) PostgreSQL database hosting for this project
+- [Fontawesome](https://fontawesome.com/) was used to add icons to the website.
+- [Balsamiq](https://balsamiq.com/) was used to create the wireframes.
+- [Coloors](https://coolors.co/image-picker) was used to create the colour scheme.
+- [Convertio](https://convertio.co/) was used to convert jpg images into png images.
+- [tinypng](https://tinypng.com/) was used to reduce the image sizes.
+- [Pixabay](https://www.pixabay.com/de-de/) was used to search and load images
+- [Browserling](https://www.browserling.com/) was used to test the application on different browsers.
+- [Cloudinary](https://cloudinary.com/) was used to store the images for Posts and profiles.
+- [Canva](https://www.canva.com/) was used to create the logo, and the placeholder images.
+- [Favicon.io](https://favicon.io/favicon-generator/) was used to create the favicon.
+- [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools?hl=de) were used to check the application for responsiveness and errors.
+
+### Frameworks: 
+- [React](https://react.dev/)
+- [React Bootstrap](https://react-bootstrap.netlify.app/)
+- [React Router Dom](https://reactrouter.com/en/main)
+
+### Libraries and modules:
+- [Axios](https://axios-http.com/docs/intro)
+- [React Infinite Scroll Component](https://www.npmjs.com/package/react-infinite-scroll-component)
+- [Moment](https://momentjs.com/)
+- [Mock Service Worker](https://mswjs.io/)
+
+## Testing
+
+The app was tested regularly and deployed early to Heroku to make sure both local and remote worked the same.
+
+### Validator Testing
+
+<details>
+<summary> HTML Validation</summary>
+<br>
+
+I passed my deployed html files through the [HTML Validator](https://validator.w3.org/) and no errors were found.<br>
+     
+![HTML result homepage](src/documentation/images/html_validator_homepage.png)<br>
+![HTML result profiles](src/documentation/images/html_validator_profilepage.png)<br>
+![HTML result add a Post](src/documentation/images/html_validator_addpost.png)<br>
+![HTML result Posts overview](src/documentation/images/html_validator_post.png)<br>
+![HTML result SharedPosts](src/documentation/images/html_validator_sharedpost.png)<br>
+![HTML result Feed](src/documentation/images/html_validator_feed.png)<br>
+![HTML result liked](src/documentation/images/html_validator_liked.png)<br>
+  
+</details>
+
+<summary> CSS Validation</summary>
+<br>
+
+I passed my deployed css file through the [CSS Validator](https://jigsaw.w3.org/css-validator/) and no errors were found.<br>
+     
+![CSS result](src/documentation/images/css_validator.png)
+  
+</details>
+
+<details>
+<summary> JavaScript Validation - ESLint</summary>
+<br>
+
+To validate the Javascript code in my code editor I used [ESLint](https://eslint.org/). Several minor issues were immediately corrected and no errors or warnings were shown. 
+<br>
+  
+</details>
+
 
