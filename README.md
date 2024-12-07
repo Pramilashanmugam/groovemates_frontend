@@ -64,7 +64,7 @@ The project was divided into nine Epics, each containing the corresponding user 
 - Epic 4: The Post Page
 - Epic 5: The Profile Page
 - Epic 6: Reporting a Post
-- Epic 7: Reporting a Comment
+- Epic 7: Reporting a Comment (was not implemented due to time constrain)
 - Epic 8: Share a Post
 - Epic 9: Followers and following
 
@@ -384,7 +384,7 @@ Below these elements, there are three icons in a row with numbers next to each f
   - *Heart Icon*: Displays the number of likes. If the currently logged-in user has liked the Post, the heart will be filled with red.<br>
   - *Comment Icon*: Shows the number of comments associated with the Post.<br>
   - *share Icon*: Displays the number of shares. If the currently logged-in user click the share the icon will turn to blue.<br>
-  - *Report button*: logged in user can report a post incase of spam, irrelevant. Submitted reports will be accessed only by admin.
+  - *Report button*: logged in user can report a post incase of spam, irrelevant. Submitted reports can be accessed only by admin any other user trying to view will get authentication required message.
 Underneath these icons is the comments section.<br>
 
 
@@ -548,16 +548,46 @@ The NotFound component is a specialized component designed to handle 404 errors,
 
 ## Bugs and Fixes
 
+
 <details>
 <summary> 500 error </summary>
 <br>
+Due to Typo error on the backend the sharedpost function was throwing 500 error in frontend, this was fixed after correcting the typo error in the api. See the pictures below
 <br>
 
+![Screenshot of error 500 on sharedposts page](src/documentation/images/error_500_sharedposts.png)<br>
+![Screenshot of error 500 on sharedposts page](src/documentation/images/error_500_reason1.png)<br>
+![Screenshot of error 500 on sharedposts page](src/documentation/images/error_500_reason1.png)<br>
+</details>
 
+<details>
+<summary> Signin/Signout error </summary>
+<br>
+The user where not getting logout despite clicking the signout button, the issue was lying in the backend drf_api/urls.py. The path('dj-rest-auth/logout/', logout_route) was placed on the wrong line, after shifting to the correct line the issue got resolved.
+<br>
 
+![Screenshot of Signout error on page](src/documentation/images/error_signout_frontend.png)<br>
+![Screenshot of Signout error on page](src/documentation/images/error_signout_backend.png)<br>
 
+</details>
 
+<details>
+<summary> Like count was not displayed </summary>
+<br>
+On clicking like button, instead of displaying the number of count it was displaying NaN  or no value. The issue was lying in the post serializers, i had not mentioned the like_count in the Meta, issue was resolved after including the like_count field.
+<br>
 
+![Screenshot of like count error on page](src/documentation/images/error_like_count.png)<br>
+![Screenshot of like count error on page](src/documentation/images/error_likecount_backend.png)<br>
+
+</details>
+
+<details>
+<summary> Logical errors while implementing shared post and profilesharedpost components </summary>
+<br>
+Implementing share component was very challenging there were many challenges like getting the correct name of the shared user on the correct post, had to face lot of struggle in getting things right. Lots of trial and errors conducted that had no enough time to document them all. Issue was resolved by getting the shared_by field as arrays. By serializing post using Primarykeyrelatedfield had solved the issue in the shareserializer backend.
+
+![Screenshot of displaying correct shared post fix](src/documentation/images/error_share-fix.png)<br>
 
 </details>
 
@@ -688,7 +718,7 @@ Profile:<Br>
 | Date field validation                                                     | On the 'Create a new Post' page, enter a date that is past the current date or more than 10years in future and try to submit the form.                | The system should reject the date with an appropriate error message.                                                                                                                                                                                                                                       | Pass   |
 | Image upload - less than 2 MB                                             | On the 'Create a New Post' page, upload an image less than 2 MB and submit the form.                                                                  | The uploaded image should be displayed as part of the Post.                                                                                                                                                                                                                                                | Pass   |
 | Image Upload - more than 2 MB                                             | On the 'Create a New Post' page, upload an image larger than 2 MB and try to submit the form.                                                         | An error message should be displayed indicating that the image size exceeds the limit.                                                                                                                                                                                                                     | Pass   |
-| Placeholder Image                                                         | On the 'Create a new Post' page, do not upload an image and submit the form.                                                                          | A placeholder image should be shown in place of the uploaded image.                                                                                                                                                                                                                                        | Pass   |
+| Placeholder Image                                                         | On the 'Create a new Post' page, do not upload an image and submit the form.                                                                          | An error message should throw saying submitted data is not a file and the post should not get created.                                                                                                                                                                                                                                        | Pass   |
 | Successful creation - redirection and success message                     | Filling out all required fields correctly on the 'Create a New Post' page and click the 'Create' button.                                              | The user should be redirected to the detail page of the Post, and the post page should be display the new post.                                                                                                                                                                                            | Pass   |
 | Edit Post - Prevent unauthorized URL access for editing                   | Open the Post edit URL without logging in or as a user who is a non-owner of the Post                                                                 | Redirected to home page                                                                                                                                                                                                                                                                                    | Pass   |
 | Post detail view - Event display                                          | View the Post detail page                                                                                                                             | The title of the Post should be displayed correctly at the top of the detail page                                                                                                                                                                                                                          | Pass   |
@@ -814,6 +844,9 @@ To see the [view of the live site](https://groovemates-frontend-b3335269700f.her
 ### Code
 
 - Parts of the setup and overall design of this project were guided by the Code Institute's Moments walkthrough project. The core elements of the Profile, Post, Follower, liked, Feed, and Comment components, were derived from the walkthrough project and subsequently tailored to meet the unique requirements of this project. I have used the same node version and all the requirements according to Moments walkthrough project, hence on development environment, we have to use nvm install 16 && nvm use 16, everytime when we need to open the application.
+- How to access the navigation bar to implement in My shared post in Profilepage sidebar was found [here](https://github.com/th-1982/artistery-avenue)
+- Report model idea was influenced from [here](https://github.com/fsjavier/hoodsap-api/tree/main/reports)
+
 
 - The following websites were used as a source of knowledge: <br>
   - [Google](www.google.com)
