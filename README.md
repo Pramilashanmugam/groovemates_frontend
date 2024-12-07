@@ -625,4 +625,14 @@ To validate the Javascript code in my code editor I used [ESLint](https://eslint
   
 </details>
 
+### Lighthouse Test
+I used Google Lighthouse in Chrome Developer Tools to test the pages for Performance, Accessibility, Best Practices and SEO for mobile view. The third part, especially cookies, downgraded my score. Overall, this is something I would like to improve in the future with more time. 
+
+Home page: <br>
+![Lighthouse report for home page on mobile screens](src/documentation/validation/lighthouse-home.png)<br>
+Add(Create a Post):<br>
+![Lighthouse report for add a Post on mobile screens](src/documentation/validation/lighthouse-add.png)<br>
+Profile:<Br>
+![Lighthouse report for a profile page on mobile screens](src/documentation/validation/lighthouse-profiles.png)<br>
+
 
