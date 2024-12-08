@@ -4,7 +4,7 @@
 
 View the deployed site [here.](https://groovemates-frontend-b3335269700f.herokuapp.com/)<br>
 
-The goal of this project is to build an engaging online platform where music enthusiasts can connect, share musical events and in that way helps in discovering different types of musics. I personally believe music can heal anything in this world.
+The goal of this project is to build an engaging online platform where music enthusiasts can connect, share musical events and in that way helps in discovering and explore different types of musical events happening in and around, helping people to visit the events they would like to and enjoy their moments. I personally believe music can heal anything in this world and as a music lover, i have always kept searching for events happening around on social medias. This website can help in gathering all the musical events by posting and sharing with others.
 
 The Groovemates frontend is the user interface component of the Groovemates application, designed with React to provide an engaging and intuitive experience for users interacting with the social network. It connects with the [Groovemates Backend API](https://groovemates-backend-b16861eb6026.herokuapp.com/), enhancing user experience by offering a responsive and dynamic interface.
 
