@@ -9,9 +9,21 @@
 
 .Absolute {
   position: absolute;
-  /* Positions the element absolutely within its closest positioned ancestor */
+  /* Positions the element */
   right: 0;
-  /* Aligns the element to the right edge of its container */
+  /* Aligns it to the right */
   z-index: 99;
-  /* Ensures the element appears above other content with a lower z-index */
+  /* Ensures it appears on top */
+  font-size: 1.5rem; /* Adjust font size for larger icons */
+  width: 30px; /* Adjust width */
+  height: 30px; /* Adjust height */
+  line-height: 30px; /* Center align vertically */
+  display: flex; /* Flexbox for centering */
+  justify-content: center; /* Center align horizontally */
+  align-items: center; /* Center align vertically */
+  cursor: pointer; /* Adds pointer cursor */
+}
+
+.Absolute:hover {
+  transform: scale(1.2); /* Optionally, add hover effect for emphasis */
 }
