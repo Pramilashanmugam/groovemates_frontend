@@ -81,7 +81,7 @@ const SharedPosts = ({ message }) => {
                     </small>
                   </p>
                   {/* Render the Post component */}
-                  <Post {...post} />
+                  <Post {...post} setPosts={setSharedPosts} />
                 </div>
               ))}
             </InfiniteScroll>
