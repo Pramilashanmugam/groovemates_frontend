@@ -200,7 +200,7 @@ const Post = (props) => {
                 overlay={
                   is_shared_by_user ? (
                     <Tooltip>
-                      Sorry, you cannot share a post more than once
+                      You have already shared this post once or just now.
                     </Tooltip>
                   ) : (
                     <Tooltip>Click to share this post</Tooltip>
