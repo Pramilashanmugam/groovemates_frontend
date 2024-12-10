@@ -604,6 +604,11 @@ On clicking like and share icons on Sharepost page it displayed the Typeerror, T
 ![Screenshot of NaN error](src/documentation/images/error_NaN_sharedpost.png)<br>
 ![Screenshot of sharedposts like, comment and share after fix](src/documentation/images/fix_sharedpost_like.png)<br>
 
+Changes made in Backend sharedpost api endpoint, reason for the fix
+
+![Sharedpost api end point view before fix](src/documentation/images/api_endpoint_before.png)<br>
+![Sharedpost api end point view after fix](src/documentation/images/api_endpoint_after.png)<br>
+
 </details>
 
 
