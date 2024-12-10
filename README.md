@@ -509,6 +509,7 @@ A dedicated 404 error page has been created to handle instances where users navi
 - *Nested Comments*: I have already included the required fields in backend api to create a nested comments, due to time constraint i was unable to complete the implementation and would like to implement in the near future.
 - *Confirmation messages*: success messages for all the functionality like delete, updated etc
 - *Delete the outdated posts*: Want to implement the outdated posts to keep the post page more lively.
+- *Live Location*: Want to implement the live location using map on post location field.
 
 ## Reusable Components
 
@@ -548,6 +549,7 @@ The NotFound component is a specialized component designed to handle 404 errors,
 
 ## Bugs and Fixes
 
+Known bugs are resolved or an alternative solution been identified and fixed. However there could also be unknown bugs, which was not discovered during the rigorous testings.
 
 <details>
 <summary> 500 error </summary>
@@ -588,6 +590,19 @@ On clicking like button, instead of displaying the number of count it was displa
 Implementing share component was very challenging there were many challenges like getting the correct name of the shared user on the correct post, had to face lot of struggle in getting things right. Lots of trial and errors conducted that had no enough time to document them all. Issue was resolved by getting the shared_by field as arrays. By serializing post using Primarykeyrelatedfield had solved the issue in the shareserializer backend.
 
 ![Screenshot of displaying correct shared post fix](src/documentation/images/error_share-fix.png)<br>
+
+</details>
+
+<details>
+<summary> On click Like/Share icons in Sharepost throw Typeerror</summary>
+<br>
+On clicking like and share icons on Sharepost page it displayed the Typeerror, The error was on line number 84 in SharedPosts.js "Post {...post}"  this was fixed by changing the code to "Post {...post} setPosts={setSharedPosts}" however the like, Share icon was giving the result as expected it was throwing NaN error instead of displaying the count of likes and share. This issue was lying at the backend as the sharedpost api end point was not receiving the like_count, Comment_count and share_count. By updating the necessary changes in posts/serializers.py in backend has resolved this issue. <br>
+
+
+![Screenshot of typeerror](src/documentation/images/error_like_sharedposts.png)<br>
+
+![Screenshot of NaN error](src/documentation/images/error_NaN_sharedpost.png)<br>
+![Screenshot of sharedposts like, comment and share after fix](src/documentation/images/fix_sharedpost_like.png)<br>
 
 </details>
 
@@ -649,6 +664,7 @@ I passed my deployed html files through the [HTML Validator](https://validator.w
 ![HTML result liked](src/documentation/images/html_validator_liked.png)<br>
   
 </details>
+<details>
 
 <summary> CSS Validation</summary>
 <br>
@@ -691,7 +707,7 @@ Profile:<Br>
 | Header - Close Navbar toggle in tablet/mobile view                        | Click outside of the toggeld navbar in tablet/mobile view                                                                                             | When clicking outside of the toggled navbar, the navbar should dissapear and the burger icon should be shown                                                                                                                                                                                               | Pass   |
 | Header - Navbar toggle inside the menu in tablet/mobile view              | Click in tablet/mobile view on the burger icon to open the navigation and then click on Posts                                                         | When the user clicks Posts in mobile or tablet view, the dropdown should open                                                                                                                                                                                                                              | Pass   |
 | Header - Navigation link                                                  | Click on a term in the navigation bar to go to the corresponding page                                                                                 | Clicking on a page at the navigation bar should take the user to the corresponding page                                                                                                                                                                                                                    | Pass   |
-| eader - Navigation link (mobile view)                                     | Click in the mobile view on a term in the navigation bar to go to the corresponding page and close the toggled burger menu                            | Clicking on a page at the navigation bar should take the user to the corresponding page and close the toggled burger menu                                                                                                                                                                                  | Pass   |
+| Header - Navigation link (mobile view)                                     | Click in the mobile view on a term in the navigation bar to go to the corresponding page and close the toggled burger menu                            | Clicking on a page at the navigation bar should take the user to the corresponding page and close the toggled burger menu                                                                                                                                                                                  | Pass   |
 | Header - Navigation links and items                                       | Depending on whether the user is logged in or not, the navigation elements should adapt accordingly                                                   | After logging in, the navigation menu should adjust accordingly.                                                                                                                                                                                                                                           | Pass   |
 | Favicon & Title                                                           | When opening the page or navigating within it, the favicon and the title should be visible.                                                           | After opening the page or navigating within it, tha favicon should be visible.                                                                                                                                                                                                                             | Pass   |
 | Sign Up                                                                   | Fill out each field and click on the sign up button.                                                                                                  | After filling out every form field with validate input, and clicking the 'Sign Up' button, the user should be redirected to sign in page                                                                                                                                                                   | Pass   |
