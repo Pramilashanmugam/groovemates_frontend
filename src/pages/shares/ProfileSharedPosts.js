@@ -120,7 +120,7 @@ const ProfileSharedPosts = ({ message, mobile }) => {
                       </strong>
                     </small>
                   </p>
-                  <Post {...post} />
+                  <Post {...post} setPosts={setSharedPosts} />
                 </div>
               ))}
             </InfiniteScroll>
