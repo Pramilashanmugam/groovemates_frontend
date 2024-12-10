@@ -502,7 +502,7 @@ Screenshot of edit/delete option for a comment<br>
 
 </details>
 
-details>
+<details>
 <summary> 404 - Not Found page </summary>
 <br>
 
