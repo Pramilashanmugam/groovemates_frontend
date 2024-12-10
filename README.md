@@ -358,7 +358,8 @@ Post Management includes the following topics:<br>
 **Overview of Posts created by the user on their profile page**: Users can view a summary of all Posts they have created from their profile page.<br>
 **Overview of liked Posts**: Users can access a list of Posts they have liked for quick reference.<br>
 **Overview of Posts whom user following in Feed**: Users can view a list of Posts of the user who are being followed.  <br>
-**Overview of Posts on Shared posts**: Users can view a list of all shared Posts of all the users with the name of people who all have shared the post. <br>
+**Overview of Posts on Shared posts**: Users can view a list of all shared posts from every user, along with the names of those who have shared each post.
+**Overview of Shared posts of current user**: A list of posts shared by the currently logged-in user can be viewed on the profile page sidebar, below the most followed profiles. <br>
 
  - **Adding a new Post**<br>
 To add a Post, the user must sign up and log in. They can then navigate to the appropriate page via the navigation bar. All form fields are required except for the description. The date must be today or in the future. The user can upload an image for the Post. If no image is uploaded, a placeholder image will be shown instead.
@@ -433,6 +434,14 @@ When a user likes a Post by clicking on the heart icon within the Post card, the
 
 - **Displaying an overview of Shared Posts**<br>
 When a user clicks the share icon the share counts increases by one and the post will get posted on the Shared Post link which can be reached on the navigation bar. Users are restricted to share a Post only once, if they attempt to share more than once a message will displayed 'You've either just shared this post or already shared it before.'. The Shared Posts are displayed similarly to those on the homepage overview, with each Post presented in a card format, which includes the event, description, date, time, location and counts of shares, likes, comments and report, additionally it also show the list of user's name who have shared the post on top of the post. The page also features infinite scroll functionality, where additional Posts are loaded after scrolling through the first 10 entries, with a brief display of a spinner indicating the loading process. In mobile view, the most active profiles are displayed above the Posts, while in desktop view, they are displayed alongside the Posts.
+
+![Screenshot of Shared post page](src/documentation/images/shared_post_view.png)<br>
+
+**Overview of Shared posts of current user**
+
+In profile page of the current user, the list of posts shared by the currently logged-in user can be viewed on the profile page sidebar, below the most followed profiles. 
+
+![Screenshot of Shared posts of current user in profile page](src/documentation/images/shared_post_profile_page.png)<br>
 
 - **Displaying an Overview of Posts from followed Users**<br> 
 As a user, you can view an overview of all Posts created by the users you follow. This page can be reached through the navigation bar by clicking the link  *Feed* in the Navbar. This page showcases Posts created by the followed users, presented in a card format similar to the homepage overview. Each card includes essential details such as the event, description, date, time, location and counts of shares, likes, comments and report.
